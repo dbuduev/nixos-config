@@ -92,9 +92,17 @@
     enable = true;
     userName = "Dennis Buduev";
     userEmail = "dbuduev@users.noreply.github.com";
+
     extraConfig.credential.helper = "manager";
     extraConfig.credential."https://github.com".username = "dbuduev";
     extraConfig.credential.credentialStore = "cache";
+    
+    aliases = {
+      ci = "commit";
+      st = "status";
+      df = "diff";
+      co = "checkout";
+    };
   };
 
   programs.gh = {
