@@ -82,17 +82,25 @@
     ethtool
     pciutils # lspci
     usbutils # lsusb
+
+    # vcs
+    git-credential-manager
+    
   ];
 
-  # basic configuration of git, please change to your own
   programs.git = {
     enable = true;
     userName = "Dennis Buduev";
     userEmail = "dbuduev@users.noreply.github.com";
+    extraConfig.credential.helper = "manager";
+    extraConfig.credential."https://github.com".username = "dbuduev";
+    extraConfig.credential.credentialStore = "cache";
   };
+
   programs.gh = {
     enable = true;
   };
+
   # starship - an customizable prompt for any shell
   programs.starship = {
     enable = true;
@@ -108,16 +116,15 @@
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    # TODO add your custom bashrc here
     bashrcExtra = ''
       export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
     '';
 
-    # set some aliases, feel free to add more or remove some
     shellAliases = {
       k = "kubectl";
       ll = "ls -lh";
       la = "ls -lAh";
+      nsw = "sudo nixos-rebuild switch --flake .#my-nixos";
     };
   };
 
