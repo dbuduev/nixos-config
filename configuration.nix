@@ -86,7 +86,7 @@ in
     description = "dennisb";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-    #  thunderbird
+    # managed by home-manager
     ];
   };
 
@@ -98,7 +98,7 @@ in
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ vim wget ghostty ripgrep fd ];
+  environment.systemPackages = with pkgs; [ vim curl wget ghostty ripgrep fd ];
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
