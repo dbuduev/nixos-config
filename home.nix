@@ -85,7 +85,9 @@
 
     # vcs
     git-credential-manager
-    
+   
+    # dev-tools
+    just
   ];
 
   programs.git = {
