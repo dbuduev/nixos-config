@@ -85,6 +85,7 @@ in
     isNormalUser = true;
     description = "dennisb";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
     # managed by home-manager
     ];
