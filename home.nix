@@ -111,6 +111,7 @@
   programs.starship = {
     enable = true;
     # custom settings
+    enableZshIntegration = true;
     settings = {
       add_newline = false;
       aws.disabled = true;
@@ -119,20 +120,19 @@
     };
   };
 
-  programs.bash = {
+  programs.zsh = {
     enable = true;
-    enableCompletion = true;
-    bashrcExtra = ''
+
+    envExtra = ''
       export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
     '';
-
     shellAliases = {
       k = "kubectl";
       ll = "ls -lh";
       la = "ls -lAh";
-      nsw = "sudo nixos-rebuild switch --flake .#my-nixos";
     };
   };
+  programs.bash.enable = false;
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
