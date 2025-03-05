@@ -8,19 +8,25 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: {
     nixosConfigurations.my-nixos = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
       modules = [
         ./configuration.nix
 
-        home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
 
-            home-manager.users.dennisb = import ./home.nix;
-            home-manager.backupFileExtension = "backup";
-            # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
+          home-manager.users.dennisb = import ./home.nix;
+          home-manager.backupFileExtension = "backup";
+          # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
         }
       ];
     };

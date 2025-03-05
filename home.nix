@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   home.username = "dennisb";
   home.homeDirectory = "/home/dennisb";
 
@@ -38,12 +40,12 @@
     # networking tools
     mtr # A network diagnostic tool
     iperf3
-    dnsutils  # `dig` + `nslookup`
+    dnsutils # `dig` + `nslookup`
     ldns # replacement of `dig`, it provide the command `drill`
     aria2 # A lightweight multi-protocol & multi-source command-line download utility
     socat # replacement of openbsd-netcat
     nmap # A utility for network discovery and security auditing
-    ipcalc  # it is a calculator for the IPv4/v6 addresses
+    ipcalc # it is a calculator for the IPv4/v6 addresses
 
     # misc
     file
@@ -64,7 +66,7 @@
 
     glow # markdown previewer in terminal
 
-    btop  # replacement of htop/nmon
+    btop # replacement of htop/nmon
     iotop # io monitoring
     iftop # network monitoring
 
@@ -82,7 +84,7 @@
 
     # vcs
     git-credential-manager
-   
+
     # dev-tools
     just
   ];
@@ -95,7 +97,7 @@
     extraConfig.credential.helper = "manager";
     extraConfig.credential."https://github.com".username = "dbuduev";
     extraConfig.credential.credentialStore = "cache";
-    
+
     aliases = {
       ci = "commit";
       st = "status";
