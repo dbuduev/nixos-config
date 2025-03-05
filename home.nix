@@ -30,6 +30,7 @@
     xz
     unzip
     p7zip
+    zstd
 
     # utils
     jq # A lightweight and flexible command-line JSON processor
@@ -54,7 +55,6 @@
     gnused
     gnutar
     gawk
-    zstd
     gnupg
 
     # nix related
