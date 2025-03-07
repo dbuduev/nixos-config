@@ -37,6 +37,7 @@
     yq-go # yaml processor https://github.com/mikefarah/yq
     eza # A modern replacement for ‘ls’
     bat
+    fzf
 
     # networking tools
     mtr # A network diagnostic tool
@@ -125,14 +126,70 @@
 
   programs.zsh = {
     enable = true;
-
+    autosuggestion.enable = true;
+    enableCompletion = true;
+    enableVteIntegration = true;
     envExtra = ''
       export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
+    '';
+    autocd = true;
+    cdpath = ["/home/dennisb/projects"];
+    defaultKeymap = "emacs";
+    history = {
+      expireDuplicatesFirst = true;
+      extended = true;
+      ignoreDups = true;
+      ignoreSpace = true;
+      save = 100000;
+      size = 100000;
+    };
+    historySubstringSearch.enable = true;
+    syntaxHighlighting = {
+      enable = true;
+    };
+    initExtraFirst = ''
+      autoload edit-command-line
+      zle -N edit-command-line
+      bindkey '^x^e' edit-command-line
+
+      function delete-branches() {
+        git branch |
+          grep --invert-match '\*' |
+          cut -c 3- |
+          fzf --multi --preview="git log {}" |
+          xargs --no-run-if-empty git branch --delete --force
+      }
+
+      zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+      zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
     '';
     shellAliases = {
       k = "kubectl";
       ll = "ls -lh";
       la = "ls -lAh";
+    };
+    zplug = {
+      enable = true;
+      plugins = [
+        {
+          name = "Aloxaf/fzf-tab";
+        }
+        {
+          name = "Freed-Wu/fzf-tab-source";
+        }
+        {
+          name = "chisui/zsh-nix-shell";
+        }
+        {
+          name = "zsh-users/zsh-completions";
+        }
+        {
+          name = "zsh-users/zsh-syntax-highlighting";
+          tags = [
+            "defer:2"
+          ];
+        }
+      ];
     };
   };
   programs.bash.enable = false;
