@@ -189,6 +189,10 @@
            bindkey '^[[A' history-substring-search-up
            bindkey '^[[B' history-substring-search-down
     '';
+    initExtra = ''
+       autoload -Uz bracketed-paste-magic
+       zle -N bracketed-paste bracketed-paste-magic
+    '';
     shellAliases = {
       k = "kubectl";
       ll = "ls -lh";
