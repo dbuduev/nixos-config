@@ -147,6 +147,7 @@
       export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
       export PAGER=bat
       export LESS='-F -g -i -M -R -S -w -X -z-4'
+      export EDITOR=vim
     '';
     autocd = true;
     cdpath = ["/home/dennisb/projects"];
