@@ -171,27 +171,29 @@
       enable = true;
     };
     initExtraFirst = ''
-           autoload edit-command-line
-           zle -N edit-command-line
-           bindkey '^x^e' edit-command-line
+      autoload edit-command-line
+      zle -N edit-command-line
+      bindkey '^x^e' edit-command-line
 
-           function delete-branches() {
-             git branch |
-               grep --invert-match '\*' |
-               cut -c 3- |
-               fzf --multi --preview="git log {}" |
-               xargs --no-run-if-empty git branch --delete --force
-           }
+      function delete-branches() {
+        git branch |
+          grep --invert-match '\*' |
+          cut -c 3- |
+          fzf --multi --preview="git log {}" |
+          xargs --no-run-if-empty git branch --delete --force
+      }
 
-           zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
-           zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
-
-           bindkey '^[[A' history-substring-search-up
-           bindkey '^[[B' history-substring-search-down
+      zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+      zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
     '';
     initExtra = ''
-       autoload -Uz bracketed-paste-magic
-       zle -N bracketed-paste bracketed-paste-magic
+      autoload -Uz bracketed-paste-magic
+      zle -N bracketed-paste bracketed-paste-magic
+
+      bindkey '^[[A' history-substring-search-up
+      bindkey '^[[B' history-substring-search-down
+      bindkey "$terminfo[kcuu1]" history-substring-search-up
+      bindkey "$terminfo[kcud1]" history-substring-search-down
     '';
     shellAliases = {
       k = "kubectl";

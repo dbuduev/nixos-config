@@ -18,7 +18,7 @@
       system = "aarch64-linux";
       modules = [
         ./configuration.nix
-
+        {nix.settings.allow-dirty = true;}
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
