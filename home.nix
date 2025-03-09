@@ -123,6 +123,20 @@
     };
   };
 
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+    defaultCommand = "rg --files";
+    defaultOptions = [
+      "--layout=reverse"
+      "--info=inline"
+      "--height=80%"
+      "--multi"
+      "--preview-window=:hidden"
+      "--preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'"
+      "--bind '?:toggle-preview'"
+    ];
+  };
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -190,20 +204,6 @@
         }
       ];
     };
-  };
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-    defaultCommand = "rg --files";
-    defaultOptions = [
-      "--layout=reverse"
-      "--info=inline"
-      "--height=80%"
-      "--multi"
-      "--preview-window=:hidden"
-      "--preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'"
-      "--bind '?:toggle-preview'"
-    ];
   };
   programs.bash.enable = false;
 
