@@ -137,6 +137,7 @@
       "--bind '?:toggle-preview'"
     ];
   };
+
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -144,6 +145,8 @@
     enableVteIntegration = true;
     envExtra = ''
       export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
+      export PAGER=bat
+      export LESS='-F -g -i -M -R -S -w -X -z-4'
     '';
     autocd = true;
     cdpath = ["/home/dennisb/projects"];
