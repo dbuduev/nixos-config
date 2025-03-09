@@ -159,7 +159,13 @@
       save = 100000;
       size = 100000;
     };
-    historySubstringSearch.enable = true;
+
+    historySubstringSearch = {
+      enable = true;
+      searchUpKey = "^[[A";
+      searchDownKey = "^[[B";
+    };
+
     syntaxHighlighting = {
       enable = true;
     };
