@@ -179,8 +179,8 @@
            zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
            zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
 
-      bindkey '^[[A' history-substring-search-up
-         bindkey '^[[B' history-substring-search-down
+           bindkey '^[[A' history-substring-search-up
+           bindkey '^[[B' history-substring-search-down
     '';
     shellAliases = {
       k = "kubectl";
