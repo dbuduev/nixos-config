@@ -140,7 +140,7 @@
 
   programs.zsh = {
     enable = true;
-    autosuggestion.enable = true;
+    autosuggestion.enable = false;
     enableCompletion = true;
     enableVteIntegration = true;
     envExtra = ''
@@ -164,20 +164,23 @@
       enable = true;
     };
     initExtraFirst = ''
-      autoload edit-command-line
-      zle -N edit-command-line
-      bindkey '^x^e' edit-command-line
+           autoload edit-command-line
+           zle -N edit-command-line
+           bindkey '^x^e' edit-command-line
 
-      function delete-branches() {
-        git branch |
-          grep --invert-match '\*' |
-          cut -c 3- |
-          fzf --multi --preview="git log {}" |
-          xargs --no-run-if-empty git branch --delete --force
-      }
+           function delete-branches() {
+             git branch |
+               grep --invert-match '\*' |
+               cut -c 3- |
+               fzf --multi --preview="git log {}" |
+               xargs --no-run-if-empty git branch --delete --force
+           }
 
-      zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
-      zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
+           zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+           zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
+
+      bindkey '^[[A' history-substring-search-up
+         bindkey '^[[B' history-substring-search-down
     '';
     shellAliases = {
       k = "kubectl";
