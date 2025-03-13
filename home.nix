@@ -87,6 +87,11 @@
 
     # dev-tools
     just
+
+    # Go
+    gopls
+    gops
+    gotestsum
   ];
 
   programs.git = {
@@ -236,4 +241,10 @@
 
   # Let home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.go = {
+    enable = true;
+    goBin = ".local/bin";
+    package = pkgs.go_1_24;
+  };
 }
