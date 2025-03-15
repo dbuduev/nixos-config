@@ -89,6 +89,12 @@
 
       # dev-tools
       just
+
+      # Neovim
+      gcc
+      lazygit
+      nodejs
+      lua-language-server
     ]
     ++ (with unstable-pkgs; [
       # Go
@@ -249,5 +255,16 @@
     enable = true;
     goBin = ".local/bin";
     package = unstable-pkgs.go_1_24;
+  };
+  # Neovim configuration with LazyVim
+  programs.neovim = {
+    enable = true;
+    withNodeJs = true;
+  };
+
+  # Use local LazyVim configuration
+  home.file.".config/nvim" = {
+    source = ./nvim;
+    recursive = true;
   };
 }
