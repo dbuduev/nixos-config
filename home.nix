@@ -110,9 +110,9 @@
     userEmail = "dbuduev@users.noreply.github.com";
 
     extraConfig = {
-      credential.helper = "manager";
+      credential.helper = "libsecret";
       credential."https://github.com".username = "dbuduev";
-      credential.credentialStore = "cache";
+      credential.credentialStore = "secretservice";
 
       commit.signoff = true;
       commit.gpgsign = false;
