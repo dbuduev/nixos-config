@@ -216,6 +216,7 @@
       k = "kubectl";
       ll = "ls -lh";
       la = "ls -lAh";
+      lg = "lazygit";
     };
     zplug = {
       enable = true;

@@ -1,4 +1,7 @@
 version: 1
 showRandomTip: false
 splashUpdatesIndex: 0
+git:
+  commit:
+    signOff: true
 
