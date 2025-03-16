@@ -105,6 +105,7 @@
 
   programs.git = {
     enable = true;
+    package = pkgs.git.override {withLibsecret = true;};
     userName = "Dennis Buduev";
     userEmail = "dbuduev@users.noreply.github.com";
 
