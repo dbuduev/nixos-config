@@ -108,9 +108,14 @@
     userName = "Dennis Buduev";
     userEmail = "dbuduev@users.noreply.github.com";
 
-    extraConfig.credential.helper = "manager";
-    extraConfig.credential."https://github.com".username = "dbuduev";
-    extraConfig.credential.credentialStore = "cache";
+    extraConfig = {
+      credential.helper = "manager";
+      credential."https://github.com".username = "dbuduev";
+      credential.credentialStore = "cache";
+
+      commit.signoff = true;
+      commit.gpgsign = false;
+    };
 
     aliases = {
       ci = "commit";
@@ -266,5 +271,8 @@
   home.file.".config/nvim" = {
     source = ./nvim;
     recursive = true;
+  };
+  home.file.".config/lazygit/config.yml" = {
+    source = ./lazygit/config/config.yml;
   };
 }
