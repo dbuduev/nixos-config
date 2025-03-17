@@ -95,6 +95,8 @@
       lazygit
       nodejs
       lua-language-server
+      stylua
+      tree-sitter
     ]
     ++ (with unstable-pkgs; [
       # Go
