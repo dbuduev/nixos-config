@@ -103,6 +103,9 @@
       gopls
       gops
       gotestsum
+
+      # Rust
+      rustup
     ]);
 
   programs.git = {
