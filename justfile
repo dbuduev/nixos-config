@@ -1,6 +1,7 @@
 
 format:
 	@ alejandra *.nix
+	@ alejandra home/*.nix
 
 boot:
 	@ sudo nixos-rebuild boot --flake .#my-nixos 
