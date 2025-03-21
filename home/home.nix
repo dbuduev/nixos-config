@@ -103,6 +103,13 @@
       lua-language-server
       stylua
       tree-sitter
+      # Add these for image and document rendering
+      imagemagick # For 'magick' and 'convert' commands
+      ghostscript # For 'gs' command
+      tectonic # For LaTeX rendering
+
+      # For Mermaid diagrams
+      mermaid-cli # For 'mmdc' command
     ]
     ++ (with unstable-pkgs; [
       # Go
