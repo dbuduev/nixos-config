@@ -117,6 +117,8 @@
       gopls
       gops
       gotestsum
+
+      rustup
     ]);
 
   programs.git = {
@@ -280,15 +282,6 @@
     goBin = ".local/bin";
     package = unstable-pkgs.go_1_24;
   };
-
-  programs.rust = {
-    enable = true;
-    # You can choose your default toolchain
-    defaultToolchain = {
-      channel = "stable";
-      components = ["rustc" "cargo" "rust-std" "rust-docs" "rustfmt" "clippy"];
-    };
-  };
   # Neovim configuration with LazyVim
   programs.neovim = {
     enable = true;
@@ -303,4 +296,10 @@
   home.file.".config/lazygit/config.yml" = {
     source = ./lazygit/config/config.yml;
   };
+  home.sessionVariables = {
+    RUSTUP_HOME = "${config.home.homeDirectory}/.rustup";
+    CARGO_HOME = "${config.home.homeDirectory}/.cargo";
+  };
+
+  home.sessionPath = ["$HOME/.cargo/bin"];
 }
