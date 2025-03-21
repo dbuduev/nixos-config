@@ -5,6 +5,7 @@ return {
       servers = {
         nil_ls = {
           -- Use the system-installed nil
+          enabled = true,
           cmd = { "nil" },
         },
       },

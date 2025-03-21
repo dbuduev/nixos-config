@@ -10,6 +10,9 @@ return {
         command = "stylua",
         prepend_args = { "--indent-type", "Spaces", "--indent-width", "2" },
       }
+      opts.formatters_by_ft = {
+        nix = { "alejandra" },
+      }
       
       return opts
     end,
