@@ -25,7 +25,7 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs;
     [
-      home-manager
+      #      home-manager
 
       nnn # terminal file manager
 
