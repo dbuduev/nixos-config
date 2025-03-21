@@ -117,9 +117,6 @@
       gopls
       gops
       gotestsum
-
-      # Rust
-      rustup
     ]);
 
   programs.git = {
@@ -282,6 +279,15 @@
     enable = true;
     goBin = ".local/bin";
     package = unstable-pkgs.go_1_24;
+  };
+
+  programs.rust = {
+    enable = true;
+    # You can choose your default toolchain
+    defaultToolchain = {
+      channel = "stable";
+      components = ["rustc" "cargo" "rust-std" "rust-docs" "rustfmt" "clippy"];
+    };
   };
   # Neovim configuration with LazyVim
   programs.neovim = {
