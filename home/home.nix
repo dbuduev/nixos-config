@@ -101,6 +101,7 @@
       lazygit
       nodejs
       lua-language-server
+      nil
       stylua
       tree-sitter
       # image and document rendering
@@ -132,6 +133,7 @@
       credential."https://github.com".username = "dbuduev";
       credential.credentialStore = "secretservice";
 
+      #dasf
       commit.signoff = true;
       commit.gpgsign = false;
     };
