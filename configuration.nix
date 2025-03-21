@@ -99,7 +99,7 @@ in {
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [vim curl wget ghostty ripgrep fd];
+  environment.systemPackages = with pkgs; [vim curl wget ghostty ripgrep fd wl-clipboard];
 
   fonts.packages = with pkgs; [
     (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
