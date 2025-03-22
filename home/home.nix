@@ -72,8 +72,6 @@
       nix-output-monitor
       alejandra
 
-      glow # markdown previewer in terminal
-
       btop # replacement of htop/nmon
       iotop # io monitoring
       iftop # network monitoring
@@ -95,15 +93,9 @@
 
       # dev-tools
       just
-
-      # Neovim
       gcc
       lazygit
-      nodejs
-      lua-language-server
-      nil
-      stylua
-      tree-sitter
+      #
       # image and document rendering
       imagemagick # 'magick' and 'convert' commands
       ghostscript # 'gs' command
@@ -118,6 +110,7 @@
       gops
       gotestsum
 
+      # Rust
       rustup
     ]);
 
@@ -282,17 +275,7 @@
     goBin = ".local/bin";
     package = unstable-pkgs.go_1_24;
   };
-  # Neovim configuration with LazyVim
-  programs.neovim = {
-    enable = true;
-    withNodeJs = true;
-  };
 
-  # Use local LazyVim configuration
-  home.file.".config/nvim" = {
-    source = ./nvim;
-    recursive = true;
-  };
   home.file.".config/lazygit/config.yml" = {
     source = ./lazygit/config/config.yml;
   };
