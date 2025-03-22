@@ -276,6 +276,25 @@
     package = unstable-pkgs.go_1_24;
   };
 
+  programs.helix = {
+    enable = true;
+    settings = {
+      theme = "tokyonight";
+      editor.cursor-shape = {
+        normal = "block";
+        insert = "bar";
+        select = "underline";
+      };
+    };
+    languages.language = [
+      {
+        name = "nix";
+        auto-format = true;
+        formatter.command = pkgs.lib.getExe pkgs.nixfmt-rfc-style;
+      }
+    ];
+  };
+
   home.file.".config/lazygit/config.yml" = {
     source = ./lazygit/config/config.yml;
   };
