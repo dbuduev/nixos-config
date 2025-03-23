@@ -279,7 +279,6 @@
   programs.helix = {
     enable = true;
     settings = {
-      theme = "tokyonight";
       editor.cursor-shape = {
         normal = "block";
         insert = "bar";
@@ -304,4 +303,13 @@
   };
 
   home.sessionPath = ["$HOME/.cargo/bin"];
+  dconf.settings = {
+    "org/gnome/desktop/wm/keybindings" = {
+      # disable Alt-` (backtick) shortcut for switching between windows of the same application
+      "switch-group" = [];
+
+      # disable the related shortcuts:
+      "switch-group-backward" = [];
+    };
+  };
 }
