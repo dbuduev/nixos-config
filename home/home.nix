@@ -284,12 +284,17 @@
         insert = "bar";
         select = "underline";
       };
+      keys = {
+        insert = {
+          "C-/" = "completion";
+        };
+      };
     };
     languages.language = [
       {
         name = "nix";
         auto-format = true;
-        formatter.command = pkgs.lib.getExe pkgs.nixfmt-rfc-style;
+        formatter.command = "alejandra";
       }
     ];
   };
