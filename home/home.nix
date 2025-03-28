@@ -3,8 +3,7 @@
   pkgs,
   unstable-pkgs,
   ...
-}:
-{
+}: {
   home.username = "dennisb";
   home.homeDirectory = "/home/dennisb";
 
@@ -24,8 +23,7 @@
   # '';
 
   # Packages that should be installed to the user profile.
-  home.packages =
-    with pkgs;
+  home.packages = with pkgs;
     [
       #      home-manager
 
@@ -118,7 +116,7 @@
 
   programs.git = {
     enable = true;
-    package = pkgs.git.override { withLibsecret = true; };
+    package = pkgs.git.override {withLibsecret = true;};
     userName = "Dennis Buduev";
     userEmail = "dbuduev@users.noreply.github.com";
 
@@ -184,7 +182,7 @@
       export EDITOR=vim
     '';
     autocd = true;
-    cdpath = [ "/home/dennisb/projects" ];
+    cdpath = ["/home/dennisb/projects"];
     defaultKeymap = "emacs";
     history = {
       expireDuplicatesFirst = true;
@@ -309,14 +307,14 @@
     CARGO_HOME = "${config.home.homeDirectory}/.cargo";
   };
 
-  home.sessionPath = [ "$HOME/.cargo/bin" ];
+  home.sessionPath = ["$HOME/.cargo/bin"];
   dconf.settings = {
     "org/gnome/desktop/wm/keybindings" = {
       # disable Alt-` (backtick) shortcut for switching between windows of the same application
-      "switch-group" = [ ];
+      "switch-group" = [];
 
       # disable the related shortcuts:
-      "switch-group-backward" = [ ];
+      "switch-group-backward" = [];
     };
   };
 }
