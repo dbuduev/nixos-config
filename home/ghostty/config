@@ -5,4 +5,6 @@ keybind = super+shift+]=next_tab
 keybind = super+shift+[=previous_tab
 
 keybind = alt+ctrl+down=goto_split:down
-keybind = global:ctrl+grave_accent=toggle_quick_terminal #MacOS only
+
+#MacOS only
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
