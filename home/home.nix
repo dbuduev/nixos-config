@@ -284,11 +284,6 @@
         insert = "bar";
         select = "underline";
       };
-      keys = {
-        insert = {
-          "C-/" = "completion";
-        };
-      };
     };
     languages.language = [
       {
