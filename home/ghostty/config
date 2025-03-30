@@ -6,3 +6,8 @@ keybind = super+shift+[=previous_tab
 
 #MacOS only
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
+
+gtk-titlebar-hide-when-maximized = true
+
+#keybind = ctrl+shift+t=toggle_tab_bar
+
