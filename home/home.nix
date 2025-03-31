@@ -299,7 +299,7 @@
 
     settings = {
       theme = "catppuccin-mocha";
-      simplified_ui = true;
+      # simplified_ui = true;
       mouse_mode = true;
       on_force_close = "detach";
 
