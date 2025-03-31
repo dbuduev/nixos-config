@@ -284,6 +284,8 @@
         insert = "bar";
         select = "underline";
       };
+      editor.file-picker.hidden = false;
+      editor.file-picker.git-ignore = false;
     };
     languages.language = [
       {
