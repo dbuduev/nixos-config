@@ -99,7 +99,20 @@ in {
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [vim curl wget ghostty ripgrep fd wl-clipboard];
+  environment.systemPackages = with pkgs; [
+    vim
+    curl
+    wget
+    ghostty
+    ripgrep
+    fd
+    wl-clipboard
+
+    # containers
+    dive
+    podman-tui
+    docker-compose
+  ];
 
   fonts.packages = with pkgs; [
     (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
@@ -133,6 +146,17 @@ in {
   system.stateVersion = "24.11"; # Did you read the comment?
 
   virtualisation.vmware.guest.enable = debug "vmware-guest" true;
+  virtualisation.containers.enable = true;
+  virtualisation.podman = {
+    enable = true;
+
+    # Create a `docker` alias for podman, to use it as a drop-in replacement
+    dockerCompat = true;
+
+    # Required for containers under podman-compose to be able to talk to each other.
+    defaultNetwork.settings.dns_enabled = true;
+  };
+
   #console.font = "Lat2-Terminus16";
   nix = {
     settings = {
