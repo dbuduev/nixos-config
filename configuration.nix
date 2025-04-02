@@ -85,7 +85,7 @@ in {
   users.users.dennisb = {
     isNormalUser = true;
     description = "dennisb";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "podman"];
     shell = pkgs.zsh;
     packages = with pkgs; [
       # managed by home-manager

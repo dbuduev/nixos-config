@@ -307,6 +307,7 @@
   home.sessionVariables = {
     RUSTUP_HOME = "${config.home.homeDirectory}/.rustup";
     CARGO_HOME = "${config.home.homeDirectory}/.cargo";
+    DOCKER_HOST = "unix:///run/podman/podman.sock";
   };
 
   home.sessionPath = ["$HOME/.cargo/bin"];
