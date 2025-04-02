@@ -295,28 +295,7 @@
       }
     ];
   };
-  programs.zellij = {
-    enable = false;
-    enableZshIntegration = true;
 
-    settings = {
-      theme = "catppuccin-mocha";
-      # simplified_ui = true;
-      mouse_mode = true;
-      on_force_close = "detach";
-
-      ui = {
-        pane_frames = {
-          rounded_corners = true;
-          hide_session_name = false;
-        };
-      };
-
-      keybinds = {
-        unbind = ["Ctrl q"]; # Prevent accidental exits
-      };
-    };
-  };
   home.file.".config/lazygit/config.yml" = {
     source = ./lazygit/config/config.yml;
   };
