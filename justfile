@@ -9,3 +9,8 @@ switch:
 	@ sudo nixos-rebuild switch --flake .#my-nixos 
 cleanup:
 	sudo nix-collect-garbage
+fhs:
+	#!/usr/bin/env bash
+	set -euo pipefail
+	pushd home/FHS
+	nix develop .#default
