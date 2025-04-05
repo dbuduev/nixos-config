@@ -297,10 +297,14 @@
     ];
   };
 
+  programs.tmux = {
+    enable = true;
+    terminal = "tmux-256color";
+  };
+
   home.file.".config/lazygit/config.yml" = {
     source = ./lazygit/config/config.yml;
   };
-
   home.file.".config/ghostty/config" = {
     source = ./ghostty/config;
   };
