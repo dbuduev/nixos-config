@@ -14,3 +14,5 @@ fhs:
 	set -euo pipefail
 	pushd home/FHS
 	nix develop .#default
+update:
+	nix flake update
