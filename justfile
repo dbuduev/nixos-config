@@ -5,14 +5,21 @@ format:
 
 boot:
 	@ sudo nixos-rebuild boot --flake .#my-nixos 
+
 switch:
 	@ sudo nixos-rebuild switch --flake .#my-nixos 
+
 cleanup:
-	sudo nix-collect-garbage
+	@ sudo nix-collect-garbage
+
 fhs:
 	#!/usr/bin/env bash
 	set -euo pipefail
 	pushd home/FHS
 	nix develop .#default
+
 update:
-	nix flake update
+	@ nix flake update
+
+upgrade:
+	@ topgrade --only rustup

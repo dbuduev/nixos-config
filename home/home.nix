@@ -87,7 +87,7 @@
       ethtool
       pciutils # lspci
       usbutils # lsusb
-
+      topgrade
       # vcs
       git-credential-manager
 
