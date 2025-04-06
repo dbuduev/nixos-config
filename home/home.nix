@@ -300,6 +300,22 @@
   programs.tmux = {
     enable = true;
     terminal = "tmux-256color";
+    keyMode = "vi";
+    extraConfig = ''
+      # Your existing extraConfig...
+
+      # Vi copy mode improvements
+      bind-key -T copy-mode-vi v send-keys -X begin-selection
+      bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+      bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
+
+      # Use v to trigger selection
+      # Use y to yank current selection
+      # Search with / just like in vim
+
+      # Add visual indication of copy mode and selection
+      set-window-option -g mode-style bg=colour4,fg=colour0
+    '';
   };
 
   home.file.".config/lazygit/config.yml" = {
