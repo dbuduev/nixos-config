@@ -289,7 +289,7 @@
       keys.insert = {
         "j" = {
           k = "normal_mode";
-          j = "j";
+          j = "replace j";
         };
       };
     };
