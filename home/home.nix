@@ -286,12 +286,6 @@
       };
       editor.file-picker.hidden = false;
       editor.file-picker.git-ignore = false;
-      keys.insert = {
-        "j" = {
-          k = "normal_mode";
-          j = "replace j";
-        };
-      };
     };
     languages.language = [
       {
@@ -307,9 +301,7 @@
     terminal = "tmux-256color";
     keyMode = "vi";
     extraConfig = ''
-      # Your existing extraConfig...
-
-      # Vi copy mode improvements
+      # vi copy mode improvements
       bind-key -T copy-mode-vi v send-keys -X begin-selection
       bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
       bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
@@ -320,6 +312,8 @@
 
       # Add visual indication of copy mode and selection
       set-window-option -g mode-style bg=colour4,fg=colour0
+
+      set -sg escape-time 10
     '';
   };
 
