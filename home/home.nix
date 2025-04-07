@@ -287,7 +287,10 @@
       editor.file-picker.hidden = false;
       editor.file-picker.git-ignore = false;
       keys.insert = {
-        "j" = {j = "normal_mode";};
+        "j" = {
+          k = "normal_mode";
+          j = "j";
+        };
       };
     };
     languages.language = [
