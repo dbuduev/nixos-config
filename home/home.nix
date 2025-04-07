@@ -38,6 +38,7 @@
 
       # utils
       curl
+      hurl
       wget
       ripgrep
       fd
