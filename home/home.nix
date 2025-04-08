@@ -155,6 +155,9 @@
       add_newline = false;
       aws.disabled = true;
       gcloud.disabled = true;
+      golang.disabled = true;
+      buf.disabled = true;
+      nodejs.disabled = true;
       line_break.disabled = true;
     };
   };
