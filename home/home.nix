@@ -104,6 +104,8 @@
 
       # Mermaid diagrams
       mermaid-cli # For 'mmdc' command
+      # Markdown
+      marksman # LSP
     ]
     ++ (with unstable-pkgs; [
       # Go
