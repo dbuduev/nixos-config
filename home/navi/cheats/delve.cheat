@@ -1,0 +1,25 @@
+% delve, go, debugging
+
+# Debug a Go package in current directory
+dlv debug
+
+# Debug a specific Go package
+dlv debug <package>
+
+# Debug a compiled binary
+dlv exec <binary>
+
+# Debug a specific test
+dlv test -- -test.run '<test_name>'
+
+# Debug tests with build flags to disable optimizations
+dlv test --build-flags="-gcflags='all=-N -l'" -- -test.run '<test_name>'
+
+# Attach to a running process
+dlv attach <pid>
+
+# Enable process tracing for debugging (temporary)
+sudo sysctl -w kernel.yama.ptrace_scope=0
+
+# Reset process tracing permissions after debugging
+sudo sysctl -w kernel.yama.ptrace_scope=1

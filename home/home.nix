@@ -323,6 +323,27 @@
     '';
   };
 
+  programs.navi = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      cheats = {
+        paths = ["${config.home.homeDirectory}/.local/share/navi/cheats"];
+      };
+      finder = {
+        command = "fzf";
+      };
+      shell = {
+        command = "zsh";
+      };
+    };
+  };
+
+  home.file.".local/share/navi/cheats" = {
+    source = ./navi/cheats;
+    recursive = true;
+  };
+
   home.file.".config/lazygit/config.yml" = {
     source = ./lazygit/config/config.yml;
   };
