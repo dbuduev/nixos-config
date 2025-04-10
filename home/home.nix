@@ -366,5 +366,8 @@
       # disable the related shortcuts:
       "switch-group-backward" = [];
     };
+    "org/gnome/desktop/input-sources" = {
+      xkb-options = ["caps:escape"];
+    };
   };
 }
