@@ -339,6 +339,12 @@
     };
   };
 
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
+
   home.file.".local/share/navi/cheats" = {
     source = ./navi/cheats;
     recursive = true;
