@@ -285,13 +285,16 @@
   programs.helix = {
     enable = true;
     settings = {
-      editor.cursor-shape = {
-        normal = "block";
-        insert = "bar";
-        select = "underline";
+      editor = {
+        cursor-shape = {
+          normal = "block";
+          insert = "bar";
+          select = "underline";
+        };
+        file-picker.hidden = false;
+        file-picker.git-ignore = false;
+        soft-wrap.enable = true;
       };
-      editor.file-picker.hidden = false;
-      editor.file-picker.git-ignore = false;
     };
     languages.language = [
       {
