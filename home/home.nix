@@ -46,6 +46,7 @@
       yq-go # yaml processor https://github.com/mikefarah/yq
       eza # A modern replacement for ‘ls’
       bat
+      ed
 
       # networking tools
       mtr # A network diagnostic tool
