@@ -143,15 +143,6 @@
     };
   };
 
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      stdenv.cc.cc.lib
-      # zlib
-      # openssl
-    ];
-  };
-
   programs.gh = {
     enable = true;
   };
@@ -374,6 +365,7 @@
     RUSTUP_HOME = "${config.home.homeDirectory}/.rustup";
     CARGO_HOME = "${config.home.homeDirectory}/.cargo";
     DOCKER_HOST = "unix:///run/podman/podman.sock";
+    NIX_LD = "$(cat ${pkgs.stdenv.cc}/nix-support/dynamic-linker)";
   };
 
   home.sessionPath = ["$HOME/.cargo/bin"];
