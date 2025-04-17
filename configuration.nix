@@ -169,4 +169,12 @@ in {
       options = "--delete-older-than 1w";
     };
   };
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      stdenv.cc.cc.lib
+      # zlib
+      # openssl
+    ];
+  };
 }
