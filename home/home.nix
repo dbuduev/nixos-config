@@ -116,6 +116,8 @@
 
       # Rust
       rustup
+
+      bazel
     ]);
 
   programs.git = {
