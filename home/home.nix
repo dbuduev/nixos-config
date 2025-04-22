@@ -117,7 +117,7 @@
       # Rust
       rustup
 
-      bazel
+      bazelisk
     ]);
 
   programs.git = {
