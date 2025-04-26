@@ -161,6 +161,8 @@
       golang.disabled = true;
       buf.disabled = true;
       nodejs.disabled = true;
+      rust.disabled = true;
+      package.disabled = true;
       line_break.disabled = true;
     };
   };
