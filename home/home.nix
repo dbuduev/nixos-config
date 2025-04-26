@@ -122,7 +122,8 @@
       # Zig
       zig
       zls
-      lldb-dap
+
+      lldb
     ]);
 
   programs.git = {
