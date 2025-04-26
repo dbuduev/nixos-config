@@ -118,6 +118,10 @@
       rustup
 
       bazelisk
+
+      # Zig
+      zig
+      zls
     ]);
 
   programs.git = {
@@ -306,6 +310,11 @@
         name = "nix";
         auto-format = true;
         formatter.command = "alejandra";
+      }
+      {
+        name = "zig";
+        auto-format = true;
+        language-server = {command = "zls";};
       }
     ];
   };
