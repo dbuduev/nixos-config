@@ -122,6 +122,7 @@
       # Zig
       zig
       zls
+      lldb-dap
     ]);
 
   programs.git = {
@@ -314,7 +315,6 @@
       {
         name = "zig";
         auto-format = true;
-        language-server = {command = "zls";};
       }
     ];
   };
