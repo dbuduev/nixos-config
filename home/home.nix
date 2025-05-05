@@ -338,6 +338,9 @@
       set-window-option -g mode-style bg=colour4,fg=colour0
 
       set -sg escape-time 10
+
+      # New windows will inherit current path
+      bind c new-window -c "#{pane_current_path}"
     '';
   };
 
