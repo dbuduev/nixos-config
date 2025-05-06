@@ -296,6 +296,7 @@
   programs.helix = {
     enable = true;
     settings = {
+      theme = "adwaita-dark";
       editor = {
         cursor-shape = {
           normal = "block";
@@ -341,6 +342,38 @@
 
       # New windows will inherit current path
       bind c new-window -c "#{pane_current_path}"
+
+      # Styling
+      set -g clock-mode-style 24
+      set -g copy-mode-current-match-style bg=#89ca78,fg=#282C34
+      set -g copy-mode-mark-style bg=#ffffff,fg=#282C34
+      set -g copy-mode-match-style bg=#ffffff,fg=#282C34
+      set -g cursor-style blinking-block
+      set -g message-command-style bg=#22252C,fg=#abb2bf
+      set -g message-style bg=#22252C,fg=#abb2bf
+      set -g mode-style bg=#89ca78,fg=#282C34
+      set -g pane-active-border-style bg=#282C34,fg=#89ca78,bold
+      set -g pane-border-format "#{pane_index} #{pane_current_command} (#{pane_pid})"
+      set -g pane-border-indicators colour
+      set -g pane-border-lines heavy
+      set -g pane-border-status top
+      set -g pane-border-style bg="#282C34"
+      set -g status-justify left
+      set -g status-left-length 20
+      set -g status-left "#{?session_grouped,#[bg=#61afef fg=#000000] #{session_group} #[bg=#d55fde fg=#61afef],}#[bg=#d55fde fg=#000000] #S#[noitalics] #[bg=#22252C fg=#d55fde]"
+      set -g status-position bottom
+      set -g status-right "#[bg=#22252C fg=#be5046]#[bg=#be5046 fg=#000000] #H #[bg=#be5046 fg=#d19a66]#[bg=#d19a66 fg=#000000] #(date +%Y-%m-%d) #[bg=#d19a66 fg=#e5c07b]#[bg=#e5c07b fg=#000000] #(date +%H:%M) "
+      set -g status-style bg=#22252C,fg=#000000
+      set -g window-status-activity-style noreverse,bold
+      set -g window-status-bell-style noreverse,bold
+      set -g window-status-current-format " #I:#W#F "
+      set -g window-status-current-style fg=#89ca78,bold
+      set -g window-status-format " #I:#W#F "
+      set -g window-status-style fg=#abb2bf
+      set -g window-status-last-style fg=#2bbac5,bold
+      set -g window-status-separator "#[bg=#22252C fg=#abb2bf]"
+      set -g window-style bg=#282C34
+
     '';
   };
 
