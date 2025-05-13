@@ -296,7 +296,7 @@
   programs.helix = {
     enable = true;
     settings = {
-      theme = "adwaita-dark";
+      theme = "catppuccin_frappe";
       editor = {
         cursor-shape = {
           normal = "block";
