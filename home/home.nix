@@ -245,7 +245,7 @@
     shellAliases = {
       k = "kubectl";
       ll = "ls -lh";
-      la = "ls -lAh";
+      l = "ls -lAh";
       lg = "lazygit";
     };
     zplug = {
