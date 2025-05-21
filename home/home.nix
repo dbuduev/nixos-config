@@ -134,11 +134,11 @@
     userEmail = "dbuduev@users.noreply.github.com";
 
     extraConfig = {
+      init.defaultBranch = "main";
       credential.helper = "libsecret";
       credential."https://github.com".username = "dbuduev";
       credential.credentialStore = "secretservice";
 
-      #dasf
       commit.signoff = true;
       commit.gpgsign = false;
     };
