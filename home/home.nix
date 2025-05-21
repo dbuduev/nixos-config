@@ -90,6 +90,7 @@
       pciutils # lspci
       usbutils # lsusb
       topgrade
+      openssl
       # vcs
       git-credential-manager
 
