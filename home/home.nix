@@ -398,6 +398,7 @@
     enable = true;
     enableZshIntegration = true;
     nix-direnv.enable = true;
+    config.load_env = true;
   };
 
   home.file.".local/share/navi/cheats" = {
