@@ -133,13 +133,13 @@
     package = pkgs.git.override {withLibsecret = true;};
     userName = "Dennis Buduev";
     userEmail = "dbuduev@users.noreply.github.com";
-
     extraConfig = {
       init.defaultBranch = "main";
       credential.helper = "libsecret";
       credential."https://github.com".username = "dbuduev";
       credential.credentialStore = "secretservice";
 
+      core.excludesfile = "~/.config/git/.gitignore";
       commit.signoff = true;
       commit.gpgsign = false;
     };
@@ -151,6 +151,10 @@
       co = "checkout";
     };
   };
+
+  home.file.".config/git/.gitignore".text = ''
+    .envrc
+  '';
 
   programs.gh = {
     enable = true;
