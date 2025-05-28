@@ -309,7 +309,6 @@
           select = "underline";
         };
         file-picker.hidden = false;
-        file-picker.git-ignore = false;
         soft-wrap.enable = true;
       };
     };
