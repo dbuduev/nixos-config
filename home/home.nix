@@ -131,6 +131,8 @@
       zls
 
       lldb
+
+      buf
     ]);
 
   programs.git = {
