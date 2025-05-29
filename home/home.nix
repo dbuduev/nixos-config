@@ -108,6 +108,11 @@
       mermaid-cli # For 'mmdc' command
       # Markdown
       marksman # LSP
+
+      wireshark # GUI network protocol analyzer
+      grpcurl # CLI gRPC client
+      grpcui # Web-based gRPC client
+      tcpdump # Packet capture
     ]
     ++ (with unstable-pkgs; [
       # Go
