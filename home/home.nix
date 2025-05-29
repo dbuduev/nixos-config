@@ -113,6 +113,7 @@
       grpcurl # CLI gRPC client
       grpcui # Web-based gRPC client
       tcpdump # Packet capture
+      mitmproxy
     ]
     ++ (with unstable-pkgs; [
       # Go
