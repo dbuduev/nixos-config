@@ -386,6 +386,14 @@
       set -g window-status-separator "#[bg=#22252C fg=#abb2bf]"
       set -g window-style bg=#282C34
 
+
+      # split panes using | and -
+      bind | split-window -h
+      bind - split-window -v
+      unbind '"'
+      unbind %
+      # enable mouse control (clickable windows, panes, resizable panes)
+      set -g mouse on
     '';
   };
 
