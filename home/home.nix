@@ -162,6 +162,7 @@
 
   home.file.".config/git/.gitignore".text = ''
     .envrc
+    .helix
   '';
 
   programs.gh = {
