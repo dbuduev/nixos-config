@@ -133,6 +133,7 @@
       lldb
 
       buf
+      protobuf
     ]);
 
   programs.git = {
