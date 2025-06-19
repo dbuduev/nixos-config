@@ -120,6 +120,7 @@
       gopls
       gops
       gotestsum
+      golangci-lint-langserver
 
       # Rust
       rustup
@@ -332,7 +333,26 @@
         name = "zig";
         auto-format = true;
       }
+      {
+        name = "go";
+        auto-format = true;
+        formatter = ["gofmt"];
+        language-servers = ["gopls" "golangci-lint-langserver"];
+      }
     ];
+    languages.language-server.gopls = {
+      command = "gopls";
+      config = {
+        analyses = {
+          unusedparams = true;
+          fieldalignment = true;
+          nilness = true;
+        };
+        staticcheck = true;
+        gofumpt = true;
+        env = {GOFLAGS = "-tags=tests,integration,e2e";};
+      };
+    };
   };
 
   programs.tmux = {
