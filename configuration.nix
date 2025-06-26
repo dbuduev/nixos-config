@@ -115,7 +115,8 @@ in {
   ];
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
+    pkgs.nerd-fonts._0xproto
+    pkgs.nerd-fonts.droid-sans-mono
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
