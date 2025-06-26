@@ -47,6 +47,7 @@
       eza # A modern replacement for ‘ls’
       bat
       ed
+      entr # Run arbitrary commands when files change
 
       # networking tools
       mtr # A network diagnostic tool
