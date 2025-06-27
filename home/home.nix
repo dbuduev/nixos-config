@@ -239,29 +239,33 @@
     syntaxHighlighting = {
       enable = true;
     };
-    initContent = lib.mkBefore ''
-      autoload edit-command-line
-      zle -N edit-command-line
-      bindkey '^x^e' edit-command-line
+    initContent = let
+      zshConfigEarlyInit = lib.mkOrder 500 ''
+        autoload edit-command-line
+        zle -N edit-command-line
+        bindkey '^x^e' edit-command-line
 
-      function delete-branches() {
-        git branch |
-          grep --invert-match '\*' |
-          cut -c 3- |
-          fzf --multi --preview="git log {}" |
-          xargs --no-run-if-empty git branch --delete --force
-      }
+        function delete-branches() {
+          git branch |
+            grep --invert-match '\*' |
+            cut -c 3- |
+            fzf --multi --preview="git log {}" |
+            xargs --no-run-if-empty git branch --delete --force
+        }
 
-      zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
-      zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
-    '';
-    initContent = ''
-      autoload -Uz bracketed-paste-magic
-      zle -N bracketed-paste bracketed-paste-magic
+        zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+        zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
+      '';
+      zshConfig = lib.mkOrder 1000 ''
+        autoload -Uz bracketed-paste-magic
+        zle -N bracketed-paste bracketed-paste-magic
 
-      bindkey "$terminfo[kcuu1]" history-substring-search-up
-      bindkey "$terminfo[kcud1]" history-substring-search-down
-    '';
+        bindkey "$terminfo[kcuu1]" history-substring-search-up
+        bindkey "$terminfo[kcud1]" history-substring-search-down
+      '';
+    in
+      lib.mkMerge [zshConfigEarlyInit zshConfig];
+
     shellAliases = {
       k = "kubectl";
       ll = "ls -lh";
