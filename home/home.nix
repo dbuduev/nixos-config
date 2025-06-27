@@ -2,6 +2,7 @@
   config,
   pkgs,
   unstable-pkgs,
+  lib,
   ...
 }: {
   home.username = "dennisb";
@@ -238,7 +239,7 @@
     syntaxHighlighting = {
       enable = true;
     };
-    initExtraFirst = ''
+    initContent = lib.mkBefore ''
       autoload edit-command-line
       zle -N edit-command-line
       bindkey '^x^e' edit-command-line
@@ -254,7 +255,7 @@
       zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
       zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
     '';
-    initExtra = ''
+    initContent = ''
       autoload -Uz bracketed-paste-magic
       zle -N bracketed-paste bracketed-paste-magic
 
