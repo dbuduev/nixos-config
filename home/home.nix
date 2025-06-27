@@ -115,6 +115,8 @@
       grpcui # Web-based gRPC client
       tcpdump # Packet capture
       mitmproxy
+
+      clipman
     ]
     ++ (with unstable-pkgs; [
       # Go
@@ -473,6 +475,19 @@
     };
     "org/gnome/desktop/input-sources" = {
       xkb-options = ["caps:escape"];
+    };
+  };
+  # Enable clipman service
+  systemd.user.services.clipman = {
+    Unit = {
+      Description = "Clipboard manager";
+      After = ["graphical-session-pre.target"];
+      PartOf = ["graphical-session.target"];
+    };
+    Install.WantedBy = ["graphical-session.target"];
+    Service = {
+      ExecStart = "${pkgs.clipman}/bin/clipman store";
+      Restart = "always";
     };
   };
 }
