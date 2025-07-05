@@ -263,7 +263,7 @@
         bindkey "$terminfo[kcuu1]" history-substring-search-up
         bindkey "$terminfo[kcud1]" history-substring-search-down
 
-        ln -s /host/dennis/Projects ~/host-projects
+        [ -L ~/host-projects ] || ln -s /host/dennis/Projects ~/host-projects
       '';
     in
       lib.mkMerge [zshConfigEarlyInit zshConfig];
