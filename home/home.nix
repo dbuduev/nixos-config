@@ -355,7 +355,6 @@
       config = {
         analyses = {
           unusedparams = true;
-          fieldalignment = true;
           nilness = true;
         };
         staticcheck = true;
