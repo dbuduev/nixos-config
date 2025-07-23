@@ -321,6 +321,7 @@
 
   programs.helix = {
     enable = true;
+    package = unstable-pkgs.helix;
     settings = {
       theme = "catppuccin_frappe";
       editor = {
