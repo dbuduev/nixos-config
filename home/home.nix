@@ -62,12 +62,13 @@
 
       # misc
       file
-      which
-      tree
+      gawk
+      gnumake
+      gnupg
       gnused
       gnutar
-      gawk
-      gnupg
+      tree
+      which
 
       # nix related
       #
