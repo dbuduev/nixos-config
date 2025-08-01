@@ -126,6 +126,9 @@
       gotestsum
       golangci-lint-langserver
 
+      # Tiny GO
+      tinygo
+
       # Rust
       rustup
 
