@@ -100,6 +100,7 @@
       # dev-tools
       just
       gcc
+      gdb
       lazygit
       #
       # image and document rendering
