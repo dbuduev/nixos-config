@@ -325,7 +325,7 @@
   programs.go = {
     enable = true;
     goBin = ".local/bin";
-    package = unstable-pkgs.go_1_24;
+    package = unstable-pkgs.go_1_25;
   };
 
   programs.helix = {
