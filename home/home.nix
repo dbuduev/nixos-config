@@ -128,6 +128,8 @@
       gotestsum
       golangci-lint-langserver
 
+      syft
+
       # Tiny GO
       tinygo
 
