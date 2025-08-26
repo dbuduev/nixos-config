@@ -185,6 +185,7 @@
     .helix
     .claude
     CLAUDE.md
+    .plans
   '';
 
   programs.gh = {
