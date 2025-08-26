@@ -102,6 +102,7 @@
       gcc
       gdb
       lazygit
+
       #
       # image and document rendering
       imagemagick # 'magick' and 'convert' commands
@@ -150,6 +151,8 @@
       # WebAssembly tools
       wabt # WebAssembly Binary Toolkit (wat2wasm, wasm2wat, etc.)
       binaryen # WebAssembly optimizer and toolchain utilities
+
+      claude-code
     ]);
 
   programs.git = {
@@ -180,6 +183,8 @@
   home.file.".config/git/.gitignore".text = ''
     .envrc
     .helix
+    .claude
+    CLAUDE.md
   '';
 
   programs.gh = {
