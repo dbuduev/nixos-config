@@ -290,6 +290,8 @@
       ll = "ls -lh";
       l = "ls -lAh";
       lg = "lazygit";
+      "..." = "cd ../..";
+      "...." = "cd ../../..";
     };
     zplug = {
       enable = true;
