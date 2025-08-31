@@ -140,7 +140,7 @@
       bazelisk
 
       # Zig
-      zig
+      zig_0_15
       zls
 
       lldb
