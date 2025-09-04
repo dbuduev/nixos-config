@@ -351,6 +351,7 @@
         };
         file-picker.hidden = false;
         soft-wrap.enable = true;
+        bufferline = "always";
       };
     };
     languages.language = [
