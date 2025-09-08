@@ -87,13 +87,14 @@
       lsof # list open files
 
       # system tools
-      sysstat
-      lm_sensors # for `sensors` command
       ethtool
-      pciutils # lspci
-      usbutils # lsusb
-      topgrade
+      lm_sensors # for `sensors` command
       openssl
+      parted
+      pciutils # lspci
+      sysstat
+      topgrade
+      usbutils # lsusb
       # vcs
       git-credential-manager
 
