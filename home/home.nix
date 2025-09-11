@@ -356,7 +356,7 @@
       };
       keys.normal = {
         "A-S-]" = "goto_next_buffer";
-        "A-S-[" = "goto_prev_buffer";
+        "A-S-[" = "goto_previous_buffer";
       };
     };
     languages.language = [
