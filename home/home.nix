@@ -354,6 +354,10 @@
         soft-wrap.enable = true;
         bufferline = "always";
       };
+      keys.normal = {
+        "A-S-]" = "goto_next_buffer";
+        "A-S-[" = "goto_prev_buffer";
+      };
     };
     languages.language = [
       {
