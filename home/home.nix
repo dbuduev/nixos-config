@@ -355,8 +355,8 @@
         bufferline = "always";
       };
       keys.normal = {
-        "A-S-]" = "goto_next_buffer";
-        "A-S-[" = "goto_previous_buffer";
+        "A-}" = "goto_next_buffer";
+        "A-{" = "goto_previous_buffer";
       };
     };
     languages.language = [
