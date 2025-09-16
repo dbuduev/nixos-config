@@ -182,8 +182,9 @@ in {
     enable = true;
     libraries = with pkgs; [
       stdenv.cc.cc.lib
-      # zlib
-      # openssl
+      glibc
+      zlib
+      openssl
     ];
   };
   # Share our host filesystem
