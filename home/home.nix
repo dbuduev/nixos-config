@@ -24,138 +24,159 @@
   # '';
 
   # Packages that should be installed to the user profile.
-  home.packages = with pkgs;
-    [
-      #      home-manager
+  home.packages = let
+    terraform_1_10_5 = pkgs.stdenv.mkDerivation rec {
+      pname = "terraform";
+      version = "1.10.5";
 
-      nnn # terminal file manager
+      src = pkgs.fetchzip {
+        url = "https://releases.hashicorp.com/terraform/${version}/terraform_${version}_linux_arm64.zip";
+        sha256 = "sha256-clH/NkrihhmTPMkTnByOxUxtNQK7MhZiJM7FHVjnakI="; # Replace with actual
+        stripRoot = false;
+      };
 
-      # archives
-      zip
-      xz
-      unzip
-      p7zip
-      zstd
+      installPhase = ''
+        mkdir -p $out/bin
+        cp terraform $out/bin/
+      '';
+    };
+  in
+    with pkgs;
+      [
+        #      home-manager
 
-      # utils
-      curl
-      hurl
-      wget
-      ripgrep
-      fd
-      jq # A lightweight and flexible command-line JSON processor
-      yq-go # yaml processor https://github.com/mikefarah/yq
-      eza # A modern replacement for ‘ls’
-      bat
-      ed
-      entr # Run arbitrary commands when files change
+        nnn # terminal file manager
 
-      # networking tools
-      mtr # A network diagnostic tool
-      iperf3
-      dnsutils # `dig` + `nslookup`
-      ldns # replacement of `dig`, it provide the command `drill`
-      aria2 # A lightweight multi-protocol & multi-source command-line download utility
-      socat # replacement of openbsd-netcat
-      nmap # A utility for network discovery and security auditing
-      ipcalc # it is a calculator for the IPv4/v6 addresses
+        # archives
+        zip
+        xz
+        unzip
+        p7zip
+        zstd
 
-      # misc
-      file
-      gawk
-      gnumake
-      gnupg
-      gnused
-      gnutar
-      tree
-      which
+        # utils
+        curl
+        hurl
+        wget
+        ripgrep
+        fd
+        jq # A lightweight and flexible command-line JSON processor
+        yq-go # yaml processor https://github.com/mikefarah/yq
+        eza # A modern replacement for ‘ls’
+        bat
+        ed
+        entr # Run arbitrary commands when files change
 
-      # nix related
-      #
-      # it provides the command `nom` works just like `nix`
-      # with more details log output
-      nix-output-monitor
-      alejandra
+        # networking tools
+        mtr # A network diagnostic tool
+        iperf3
+        dnsutils # `dig` + `nslookup`
+        ldns # replacement of `dig`, it provide the command `drill`
+        aria2 # A lightweight multi-protocol & multi-source command-line download utility
+        socat # replacement of openbsd-netcat
+        nmap # A utility for network discovery and security auditing
+        ipcalc # it is a calculator for the IPv4/v6 addresses
 
-      btop # replacement of htop/nmon
-      iotop # io monitoring
-      iftop # network monitoring
+        # misc
+        file
+        gawk
+        gnumake
+        gnupg
+        gnused
+        gnutar
+        tree
+        which
 
-      # system call monitoring
-      strace # system call monitoring
-      ltrace # library call monitoring
-      lsof # list open files
+        # nix related
+        #
+        # it provides the command `nom` works just like `nix`
+        # with more details log output
+        nix-output-monitor
+        alejandra
 
-      # system tools
-      ethtool
-      lm_sensors # for `sensors` command
-      openssl
-      parted
-      pciutils # lspci
-      sysstat
-      topgrade
-      usbutils # lsusb
-      # vcs
-      git-credential-manager
+        btop # replacement of htop/nmon
+        iotop # io monitoring
+        iftop # network monitoring
 
-      # dev-tools
-      just
-      gcc
-      gdb
-      lazygit
+        # system call monitoring
+        strace # system call monitoring
+        ltrace # library call monitoring
+        lsof # list open files
 
-      #
-      # image and document rendering
-      imagemagick # 'magick' and 'convert' commands
-      ghostscript # 'gs' command
-      tectonic # LaTeX rendering
+        # system tools
+        ethtool
+        lm_sensors # for `sensors` command
+        openssl
+        parted
+        pciutils # lspci
+        sysstat
+        topgrade
+        usbutils # lsusb
+        # vcs
+        git-credential-manager
 
-      # Mermaid diagrams
-      mermaid-cli # For 'mmdc' command
-      # Markdown
-      marksman # LSP
+        # dev-tools
+        just
+        gcc
+        gdb
+        lazygit
 
-      wireshark # GUI network protocol analyzer
-      grpcurl # CLI gRPC client
-      grpcui # Web-based gRPC client
-      tcpdump # Packet capture
-      mitmproxy
+        #
+        # image and document rendering
+        imagemagick # 'magick' and 'convert' commands
+        ghostscript # 'gs' command
+        tectonic # LaTeX rendering
 
-      clipman
-    ]
-    ++ (with unstable-pkgs; [
-      # Go
-      gopls
-      gops
-      gotestsum
-      golangci-lint-langserver
+        # Mermaid diagrams
+        mermaid-cli # For 'mmdc' command
+        # Markdown
+        marksman # LSP
 
-      syft
+        wireshark # GUI network protocol analyzer
+        grpcurl # CLI gRPC client
+        grpcui # Web-based gRPC client
+        tcpdump # Packet capture
+        mitmproxy
 
-      # Tiny GO
-      tinygo
+        clipman
 
-      # Rust
-      rustup
+        terraform_1_10_5
+      ]
+      ++ (with unstable-pkgs; [
+        # Go
+        gopls
+        gops
+        gotestsum
+        golangci-lint-langserver
 
-      bazelisk
+        syft
 
-      # Zig
-      zig_0_15
-      zls
+        # Tiny GO
+        tinygo
 
-      lldb
+        # Rust
+        rustup
 
-      buf
-      protobuf
+        bazelisk
 
-      # WebAssembly tools
-      wabt # WebAssembly Binary Toolkit (wat2wasm, wasm2wat, etc.)
-      binaryen # WebAssembly optimizer and toolchain utilities
+        # Zig
+        zig_0_15
+        zls
 
-      claude-code
-    ]);
+        lldb
 
+        buf
+        protobuf
+
+        # WebAssembly tools
+        wabt # WebAssembly Binary Toolkit (wat2wasm, wasm2wat, etc.)
+        binaryen # WebAssembly optimizer and toolchain utilities
+
+        claude-code
+
+        terraform-ls
+        google-cloud-sdk
+      ]);
   programs.git = {
     enable = true;
     lfs.enable = true;
