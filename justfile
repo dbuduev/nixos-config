@@ -19,7 +19,7 @@ fhs:
 	nix develop .#default
 
 update:
-	@ nix flake update
+	@ nix flake update && git add flake.lock && git ci -sm "flake update" 
 
 upgrade:
 	@ topgrade --only rustup
