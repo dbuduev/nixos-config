@@ -141,9 +141,6 @@
         clipman
 
         terraform_1_10_5
-
-        janet
-        jpm
       ]
       ++ (with unstable-pkgs; [
         # Go
@@ -179,6 +176,9 @@
 
         terraform-ls
         google-cloud-sdk
+
+        janet
+        jpm
       ]);
   programs.git = {
     enable = true;
