@@ -179,6 +179,8 @@
 
         janet
         jpm
+
+        nom # RSS reader
       ]);
   programs.git = {
     enable = true;
