@@ -10,7 +10,7 @@ switch:
 	@ sudo nixos-rebuild switch --flake .#my-nixos 
 
 cleanup:
-	@ sudo nix-collect-garbage
+	@ sudo nix-collect-garbage --delete-older-than 3d
 
 fhs:
 	#!/usr/bin/env bash
