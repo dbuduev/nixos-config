@@ -12,12 +12,6 @@ switch:
 cleanup:
 	@ sudo nix-collect-garbage --delete-older-than 3d
 
-fhs:
-	#!/usr/bin/env bash
-	set -euo pipefail
-	pushd home/FHS
-	nix develop .#default
-
 update:
 	@ nix flake update && git add flake.lock && git ci -sm "flake update" 
 
