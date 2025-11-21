@@ -472,8 +472,12 @@
       bind - split-window -v
       unbind '"'
       unbind %
+
       # enable mouse control (clickable windows, panes, resizable panes)
       set -g mouse on
+
+      # toggle status line visibility
+      bind b set -g status
     '';
   };
 
