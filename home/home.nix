@@ -419,9 +419,9 @@
     keyMode = "vi";
     extraConfig = ''
       # vi copy mode improvements
-      bind-key -T copy-mode-vi v send-keys -X begin-selection
-      bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
-      bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
+      bind -T copy-mode-vi v send -X begin-selection
+      bind -T copy-mode-vi y send -X copy-selection-and-cancel
+      bind -T copy-mode-vi r send -X rectangle-toggle
 
       # Use v to trigger selection
       # Use y to yank current selection
