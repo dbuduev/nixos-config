@@ -549,4 +549,13 @@
       Restart = "always";
     };
   };
+  home.file.".config/containers/containers.conf".text = ''
+    [network]
+    default_network = "podman"
+  '';
+  home.activation.podmanIPv6Network = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    if ! ${pkgs.podman}/bin/podman network exists podman 2>/dev/null; then
+      ${pkgs.podman}/bin/podman network create --ipv6 podman || true
+    fi
+  '';
 }
