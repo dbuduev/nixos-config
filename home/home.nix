@@ -86,6 +86,7 @@
         gnutar
         tree
         which
+        graphviz
 
         # nix related
         #
