@@ -149,9 +149,6 @@
 
         syft
 
-        # Tiny GO
-        tinygo
-
         # Rust
         rustup
 
@@ -165,10 +162,6 @@
 
         buf
         protobuf
-
-        # WebAssembly tools
-        wabt # WebAssembly Binary Toolkit (wat2wasm, wasm2wat, etc.)
-        binaryen # WebAssembly optimizer and toolchain utilities
 
         claude-code
 
