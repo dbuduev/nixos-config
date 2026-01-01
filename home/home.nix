@@ -118,6 +118,7 @@
         gcc
         gdb
         lazygit
+        clang-tools
 
         #
         # image and document rendering
