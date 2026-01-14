@@ -43,6 +43,7 @@
   in
     with pkgs;
       [
+        pkg-config
         #      home-manager
 
         nnn # terminal file manager
