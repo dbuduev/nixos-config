@@ -176,6 +176,10 @@ in {
   };
 
   #console.font = "Lat2-Terminus16";
+  console = {
+    font = "ter-v32n";
+    packages = [pkgs.terminus_font];
+  };
   nix = {
     settings = {
       experimental-features = ["nix-command" "flakes"];
