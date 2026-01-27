@@ -140,7 +140,7 @@
 
         clipman
 
-        terraform_1_10_5
+        #terraform_1_10_5
       ]
       ++ (with unstable-pkgs; [
         # Go
