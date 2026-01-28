@@ -503,6 +503,9 @@
 
   home.sessionPath = ["$HOME/.cargo/bin"];
   dconf.settings = {
+    "org/gnome/mutter" = {
+      experimental-features = ["scale-monitor-framebuffer"];
+    };
     "org/gnome/desktop/input-sources" = {
       xkb-options = ["caps:escape"];
     };
