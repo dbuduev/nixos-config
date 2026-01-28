@@ -522,13 +522,6 @@
 
   home.sessionPath = ["$HOME/.cargo/bin"];
   dconf.settings = {
-    "org/gnome/desktop/wm/keybindings" = {
-      # disable Alt-` (backtick) shortcut for switching between windows of the same application
-      "switch-group" = [];
-
-      # disable the related shortcuts:
-      "switch-group-backward" = [];
-    };
     "org/gnome/desktop/input-sources" = {
       xkb-options = ["caps:escape"];
     };
