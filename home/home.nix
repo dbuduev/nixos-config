@@ -142,6 +142,7 @@
 
         #terraform_1_10_5
       ]
+      ++ lib.optionals (stdenv.hostPlatform.system == "x86_64-linux") [unstable-pkgs.slack]
       ++ (with unstable-pkgs; [
         # Go
         gopls
