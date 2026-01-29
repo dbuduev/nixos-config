@@ -122,6 +122,8 @@
       mitmproxy
 
       clipman
+
+      keepassxc
     ]
     ++ lib.optionals (stdenv.hostPlatform.system == "x86_64-linux") [unstable-pkgs.slack]
     ++ (with unstable-pkgs; [
