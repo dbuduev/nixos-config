@@ -498,7 +498,7 @@
   home.sessionVariables = {
     RUSTUP_HOME = "${config.home.homeDirectory}/.rustup";
     CARGO_HOME = "${config.home.homeDirectory}/.cargo";
-    DOCKER_HOST = "unix:///run/podman/podman.sock";
+    DOCKER_HOST = "unix://\${XDG_RUNTIME_DIR}/podman/podman.sock";
     NIX_LD = "$(cat ${pkgs.stdenv.cc}/nix-support/dynamic-linker)";
   };
 
