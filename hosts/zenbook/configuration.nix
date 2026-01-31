@@ -26,7 +26,7 @@ in {
   services.tlp.enable = true;
   services.fwupd.enable = true;
 
-  networking.hostName = "my-nixos"; # Define your hostname.
+  networking.hostName = "zenbook"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -53,8 +53,7 @@ in {
     LC_TELEPHONE = "en_AU.UTF-8";
     LC_TIME = "en_AU.UTF-8";
   };
-
-  # Enable the X11 windowing system.
+  # Enable graphical display (GDM + GNOME, runs Wayland by default)
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
