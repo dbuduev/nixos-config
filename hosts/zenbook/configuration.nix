@@ -5,9 +5,7 @@
   config,
   pkgs,
   ...
-}: let
-  debug = name: value: builtins.trace "Evaluating: ${name}" value;
-in {
+}: {
   imports = [
   ];
 
