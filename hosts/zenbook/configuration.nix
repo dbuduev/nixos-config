@@ -9,8 +9,6 @@
   debug = name: value: builtins.trace "Evaluating: ${name}" value;
 in {
   imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
   ];
 
   # Bootloader.
