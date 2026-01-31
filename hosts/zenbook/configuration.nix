@@ -200,4 +200,12 @@ in {
       openssl
     ];
   };
+
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      disableWhileTyping = true;
+      tapping = true;
+    };
+  };
 }
