@@ -21,7 +21,6 @@ in {
   boot.kernelPackages = pkgs.linuxPackages_latest;
   services.xserver.videoDrivers = ["amdgpu"];
   hardware.amdgpu.initrd.enable = true;
-  services.thermald.enable = true;
   services.power-profiles-daemon.enable = false;
   services.tlp.enable = true;
   services.fwupd.enable = true;
