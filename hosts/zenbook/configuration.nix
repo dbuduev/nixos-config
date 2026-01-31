@@ -159,6 +159,12 @@
   # List services that you want to enable:
 
   services.openssh.enable = false;
+  # SSH hardening (if enabled)
+  # services.openssh.settings = {
+  #   PasswordAuthentication = false;
+  #   PermitRootLogin = "no";
+  #   KbdInteractiveAuthentication = false;
+  # };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [];
