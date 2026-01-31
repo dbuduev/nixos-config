@@ -203,4 +203,8 @@ in {
       "defaults"
     ];
   };
+
+  system.activationScripts.hostProjects = ''
+    ln -sfn /host/dennis/Projects /home/dennisb/host-projects
+  '';
 }
