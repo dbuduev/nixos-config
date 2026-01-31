@@ -90,8 +90,6 @@
       sysstat
       topgrade
       usbutils # lsusb
-      # vcs
-      git-credential-manager
 
       # dev-tools
       just
