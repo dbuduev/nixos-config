@@ -62,7 +62,7 @@ in {
     enable = true;
     extraGSettingsOverrides = ''
       [org.gnome.desktop.session]
-      idle-delay=0
+      idle-delay=600
     '';
   };
 
