@@ -3,11 +3,11 @@ format:
 	@ alejandra *.nix
 	@ alejandra home/*.nix
 
-boot:
-	@ sudo nixos-rebuild boot --flake .#mb-vm
+boot system="zenbook":
+	@ sudo nixos-rebuild boot --flake .#{{system}}
 
-switch:
-	@ sudo nixos-rebuild switch --flake .#mb-vm 
+switch system="zenbook":
+	@ sudo nixos-rebuild switch --flake .#{{system}}
 
 cleanup:
 	@ sudo nix-collect-garbage --delete-older-than 3d
