@@ -46,7 +46,7 @@
   in {
     nixosConfigurations = {
       # VMware VM (ARM64)
-      my-nixos = mkSystem {
+      mb-vm = mkSystem {
         system = "aarch64-linux";
         hostName = "vm";
       };

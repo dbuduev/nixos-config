@@ -4,10 +4,10 @@ format:
 	@ alejandra home/*.nix
 
 boot:
-	@ sudo nixos-rebuild boot --flake .#my-nixos 
+	@ sudo nixos-rebuild boot --flake .#mb-vm
 
 switch:
-	@ sudo nixos-rebuild switch --flake .#my-nixos 
+	@ sudo nixos-rebuild switch --flake .#mb-vm 
 
 cleanup:
 	@ sudo nix-collect-garbage --delete-older-than 3d
