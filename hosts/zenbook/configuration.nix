@@ -21,6 +21,22 @@
   services.tlp.enable = true;
   services.fwupd.enable = true;
 
+  # Swap options (uncomment as needed)
+  # Zram: compressed RAM swap, good for SSDs
+  # zramSwap = {
+  #   enable = true;
+  #   memoryPercent = 50;
+  # };
+  # Swapfile: required for hibernation (needs >= RAM size)
+  # swapDevices = [{
+  #   device = "/swapfile";
+  #   size = 32768;  # 32GB in MB
+  # }];
+  # Hibernation resume (if using swapfile on ecrypted disk)
+  # Get offset: sudo filefrag -v /swapfile | head -4
+  # boot.resumeDevice = "/dev/disk/by-uuid/abc09bb6-98a0-468e-ad43-66eb930a048d";
+  # boot.kernelParams = [ "resume_offset=<offset>" ];
+
   networking.hostName = "zenbook"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
