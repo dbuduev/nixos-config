@@ -49,6 +49,8 @@ Your NVMe drive is almost certainly `/dev/nvme0n1`. Confirm before proceeding. *
 
 ## 3. Partition the disk
 
+Script: [`01-partition.sh`](01-partition.sh)
+
 ```bash
 parted /dev/nvme0n1 -- mklabel gpt
 parted /dev/nvme0n1 -- mkpart ESP fat32 1MiB 1GiB
@@ -63,6 +65,8 @@ This gives you:
 - `/dev/nvme0n1p3` — remainder for LUKS-encrypted root
 
 ## 4. Set up LUKS encryption
+
+Script: [`02-luks.sh`](02-luks.sh)
 
 Encrypt both swap and root partitions. Use the same passphrase for convenience (you'll be prompted twice at boot otherwise):
 
@@ -84,6 +88,8 @@ This creates `/dev/mapper/cryptswap` and `/dev/mapper/cryptroot`.
 
 ## 5. Format the filesystems
 
+Script: [`03-format.sh`](03-format.sh)
+
 ```bash
 mkfs.fat -F 32 -n BOOT /dev/nvme0n1p1
 mkswap -L swap /dev/mapper/cryptswap
@@ -91,6 +97,8 @@ mkfs.ext4 -L nixos /dev/mapper/cryptroot
 ```
 
 ## 6. Mount
+
+Script: [`04-mount.sh`](04-mount.sh)
 
 ```bash
 mount /dev/mapper/cryptroot /mnt
@@ -100,6 +108,8 @@ swapon /dev/mapper/cryptswap
 ```
 
 ## 7. Generate hardware config
+
+Script: [`05-generate-config.sh`](05-generate-config.sh)
 
 ```bash
 nixos-generate-config --root /mnt
@@ -129,6 +139,8 @@ blkid /dev/nvme0n1p3
 ```
 
 ## 8. Install with your flake
+
+Script: [`06-install.sh`](06-install.sh)
 
 You need your flake repo on the installer. Options:
 
@@ -180,6 +192,8 @@ You'll be prompted to set the root password.
 
 ## 9. Reboot
 
+Script: [`07-reboot.sh`](07-reboot.sh)
+
 ```bash
 umount -R /mnt
 reboot
@@ -188,6 +202,8 @@ reboot
 Remove the USB. You should see a LUKS passphrase prompt during boot.
 
 ## 10. Post-install
+
+Script: [`08-post-install.sh`](08-post-install.sh)
 
 Log in as root, set your user password:
 
