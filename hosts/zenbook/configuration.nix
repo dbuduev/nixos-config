@@ -31,6 +31,20 @@
   # Encryption options (enable if disk is encrypted with LUKS)
   boot.initrd.luks.devices."cryptswap".allowDiscards = true; # SSD TRIM
   boot.initrd.luks.devices."cryptroot".allowDiscards = true; # SSD TRIM
+
+  # Blacklist Logitech HID++ driver to prevent boot hang with USB receiver attached
+  # Then load it after boot via systemd service for full functionality
+  boot.blacklistedKernelModules = ["hid-logitech-hidpp"];
+  systemd.services.logitech-hidpp = {
+    description = "Load Logitech HID++ driver after boot";
+    wantedBy = ["multi-user.target"];
+    after = ["systemd-modules-load.service"];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.kmod}/bin/modprobe hid-logitech-hidpp";
+      RemainAfterExit = true;
+    };
+  };
   boot.resumeDevice = "/dev/mapper/cryptswap"; # hibernation
   boot.plymouth.enable = true; # nicer password prompt
 
