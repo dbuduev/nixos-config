@@ -98,15 +98,27 @@
     #media-session.enable = true;
   };
 
-  # Lower internal mic boost via ALSA (runs at boot)
-  systemd.services.alsa-mic-boost = {
+  # Set noise-cancelled mic as default
+  services.pipewire.wireplumber.extraConfig."51-mic-settings" = {
+    "wireplumber.settings" = {
+      "default.audio.source" = "rnnoise_source";
+    };
+  };
+
+  # Lower internal mic boost (timer runs after WirePlumber settles)
+  systemd.user.services.alsa-mic-boost = {
     description = "Set internal mic boost to reasonable level";
-    after = ["sound.target"];
-    wantedBy = ["multi-user.target"];
     serviceConfig = {
       Type = "oneshot";
-      RemainAfterExit = true;
       ExecStart = "${pkgs.alsa-utils}/bin/amixer -c 1 sset 'Internal Mic Boost',0 1";
+    };
+  };
+  systemd.user.timers.alsa-mic-boost = {
+    description = "Set internal mic boost after login";
+    wantedBy = ["timers.target"];
+    timerConfig = {
+      OnStartupSec = "3s";
+      Unit = "alsa-mic-boost.service";
     };
   };
 
