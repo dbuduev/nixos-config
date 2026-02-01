@@ -2,23 +2,40 @@
 set -euo pipefail
 
 # Install NixOS from flake
-# Run this after:
-# 1. Cloning your flake repo to /mnt/etc/nixos/flake-repo
-# 2. Replacing hosts/zenbook/hardware-configuration.nix with generated one
-# 3. Uncommenting LUKS options in hosts/zenbook/configuration.nix
 
 FLAKE_DIR="${1:-/mnt/etc/nixos/flake-repo}"
+GENERATED="/mnt/etc/nixos/hardware-configuration.nix"
+TARGET="$FLAKE_DIR/hosts/zenbook/hardware-configuration.nix"
 
+# Clone if needed
 if [[ ! -f "$FLAKE_DIR/flake.nix" ]]; then
-    echo "Flake not found. Cloning from GitHub..."
+    echo "=== Cloning flake repo ==="
     nix-shell -p git --run "git clone https://github.com/dbuduev/nixos-config.git $FLAKE_DIR"
 fi
 
+# Copy hardware config
+echo ""
+echo "=== Copying hardware-configuration.nix ==="
+cp "$GENERATED" "$TARGET"
+echo "Copied to: $TARGET"
+
+# Prompt to edit configuration.nix
+echo ""
+echo "=== IMPORTANT: Edit configuration.nix ==="
+echo "Uncomment the LUKS options in: $FLAKE_DIR/hosts/zenbook/configuration.nix"
+echo ""
+echo "  boot.initrd.luks.devices.\"cryptswap\".allowDiscards = true;"
+echo "  boot.initrd.luks.devices.\"cryptroot\".allowDiscards = true;"
+echo "  boot.resumeDevice = \"/dev/mapper/cryptswap\";"
+echo ""
+read -p "Press Enter after editing (or Ctrl+C to abort)..."
+
+# Install
+echo ""
 echo "=== Installing NixOS from $FLAKE_DIR ==="
 cd "$FLAKE_DIR"
 nixos-install --flake .#zenbook
 
 echo ""
 echo "=== Installation complete ==="
-echo "You'll be prompted to set the root password."
 echo "After reboot, log in as root and run: passwd dennisb"

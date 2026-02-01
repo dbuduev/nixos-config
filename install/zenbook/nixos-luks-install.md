@@ -143,21 +143,13 @@ blkid /dev/nvme0n1p3
 
 Script: [`06-install.sh`](06-install.sh)
 
-You need your flake repo on the installer. Options:
+The install script will:
+1. Clone the flake repo from GitHub (if not present)
+2. Copy the generated `hardware-configuration.nix` to the repo
+3. Prompt you to edit `configuration.nix`
+4. Run `nixos-install`
 
-**Option A — Clone from GitHub:**
-```bash
-nix-shell -p git
-git clone https://github.com/dbuduev/nixos-config.git /mnt/etc/nixos/flake-repo
-```
-
-**Option B — Copy from another USB or existing partition.**
-
-Before installing, update your flake config:
-
-1. **Replace `hosts/zenbook/hardware-configuration.nix`** with the content of `/mnt/etc/nixos/hardware-configuration.nix` (new UUIDs, LUKS entry).
-
-2. **Update `hosts/zenbook/configuration.nix`** — uncomment/add the LUKS-related lines. You already have placeholders in your config. The key additions:
+Before proceeding, you'll need to uncomment the LUKS options in `hosts/zenbook/configuration.nix`:
 
 ```nix
 # LUKS — SSD TRIM support (safe with LUKS2)
@@ -173,23 +165,15 @@ boot.resumeDevice = "/dev/mapper/cryptswap";
 
 (The generated hardware-configuration.nix may already include the correct modules — check before duplicating.)
 
-3. **Swap is already configured.** The 32 GiB encrypted swap partition supports hibernation. The `swapDevices` entry should be auto-generated in hardware-configuration.nix. Optionally, you can also enable zram for additional compressed RAM swap:
+The swap partition is already configured. The `swapDevices` entry is auto-generated in hardware-configuration.nix.
 
-```nix
-zramSwap = {
-  enable = true;
-  memoryPercent = 50;
-};
-```
-
-Now install:
+Now run the install script:
 
 ```bash
-cd /mnt/etc/nixos/flake-repo  # or wherever your flake is
-nixos-install --flake .#zenbook
+./06-install.sh
 ```
 
-You'll be prompted to set the root password.
+You'll be prompted to edit configuration.nix, then to set the root password.
 
 ## 9. Reboot
 
@@ -212,16 +196,21 @@ Log in as root, set your user password:
 passwd dennisb
 ```
 
-Then log in as `dennisb` and verify:
+Then log in as `dennisb` and run the post-install script:
 
 ```bash
-lsblk  # should show cryptroot
-sudo cryptsetup status cryptroot  # confirm LUKS2, cipher, etc.
+./08-post-install.sh
 ```
 
-Clone your dotfiles/flake repo to your usual location and rebuild:
+This will:
+- Verify LUKS and swap are working
+- Move flake repo to `/home/dennisb/nixos-config`
+- Commit the hardware-configuration.nix changes
+
+Then rebuild to verify:
 
 ```bash
+cd ~/nixos-config
 sudo nixos-rebuild switch --flake .#zenbook
 ```
 
