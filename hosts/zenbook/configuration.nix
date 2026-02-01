@@ -235,9 +235,4 @@
       tapping = true;
     };
   };
-
-  # Disable USB wakeup for Logitech Nano Receiver (fixes hibernate resume issues)
-  # services.udev.extraRules = ''
-  #   ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c534", ATTR{power/wakeup}="disabled"
-  # '';
 }
