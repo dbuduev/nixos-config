@@ -98,6 +98,56 @@
     #media-session.enable = true;
   };
 
+  # Lower internal mic boost via ALSA (runs at boot)
+  systemd.services.alsa-mic-boost = {
+    description = "Set internal mic boost to reasonable level";
+    after = ["sound.target"];
+    wantedBy = ["multi-user.target"];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${pkgs.alsa-utils}/bin/amixer -c 1 sset 'Internal Mic Boost',0 1";
+    };
+  };
+
+  # RNNoise-based noise suppression for microphone
+  services.pipewire.extraConfig.pipewire."99-noise-suppression" = {
+    "context.modules" = [
+      {
+        name = "libpipewire-module-filter-chain";
+        args = {
+          "node.description" = "Noise Canceling Source";
+          "media.name" = "Noise Canceling Source";
+          "filter.graph" = {
+            nodes = [
+              {
+                type = "ladspa";
+                name = "rnnoise";
+                plugin = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
+                label = "noise_suppressor_mono";
+                control = {
+                  "VAD Threshold (%)" = 50.0;
+                  "VAD Grace Period (ms)" = 200;
+                  "Retroactive VAD Grace (ms)" = 0;
+                };
+              }
+            ];
+          };
+          "capture.props" = {
+            "node.name" = "capture.rnnoise_source";
+            "node.passive" = true;
+            "audio.rate" = 48000;
+          };
+          "playback.props" = {
+            "node.name" = "rnnoise_source";
+            "media.class" = "Audio/Source";
+            "audio.rate" = 48000;
+          };
+        };
+      }
+    ];
+  };
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -127,6 +177,7 @@
     ripgrep
     fd
     wl-clipboard
+    alsa-utils # for mic/audio control
 
     # containers
     dive
