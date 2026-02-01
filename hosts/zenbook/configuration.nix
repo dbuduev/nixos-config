@@ -159,7 +159,7 @@
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [53317]; # LocalSend
-  networking.firewall.allowedUDPPorts = [53317]; # LocalSend
+  networking.firewall.allowedUDPPorts = [53317 5353]; # LocalSend, mDNS
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
