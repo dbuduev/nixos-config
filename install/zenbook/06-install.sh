@@ -30,10 +30,15 @@ echo "  boot.resumeDevice = \"/dev/mapper/cryptswap\";"
 echo ""
 read -p "Press Enter after editing (or Ctrl+C to abort)..."
 
+# Stage changes so flake can see them (flakes only see git-tracked files)
+echo ""
+echo "=== Staging changes for flake ==="
+cd "$FLAKE_DIR"
+nix-shell -p git --run "git add -A"
+
 # Install
 echo ""
 echo "=== Installing NixOS from $FLAKE_DIR ==="
-cd "$FLAKE_DIR"
 nixos-install --flake .#zenbook
 
 echo ""
