@@ -28,11 +28,10 @@
   # };
 
   # Encryption options (enable if disk is encrypted with LUKS)
-  # boot.initrd.luks.devices."cryptswap".allowDiscards = true;  # SSD TRIM
-  # boot.initrd.luks.devices."cryptroot".allowDiscards = true;  # SSD TRIM
-  # boot.initrd.availableKernelModules = [ "aes_x86_64" "cryptd" ];  # faster crypto
-  # boot.resumeDevice = "/dev/mapper/cryptswap";  # hibernation
-  # boot.plymouth.enable = true;  # nicer password prompt
+  boot.initrd.luks.devices."cryptswap".allowDiscards = true;  # SSD TRIM
+  boot.initrd.luks.devices."cryptroot".allowDiscards = true;  # SSD TRIM
+  boot.resumeDevice = "/dev/mapper/cryptswap";  # hibernation
+  boot.plymouth.enable = true;  # nicer password prompt
 
   networking.hostName = "zenbook"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
