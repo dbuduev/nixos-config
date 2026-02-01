@@ -21,25 +21,17 @@
   services.tlp.enable = true;
   services.fwupd.enable = true;
 
-  # Swap options (uncomment as needed)
-  # Zram: compressed RAM swap, good for SSDs
+  # Zram: optional compressed RAM swap (in addition to swap partition)
   # zramSwap = {
   #   enable = true;
   #   memoryPercent = 50;
   # };
-  # Swapfile: required for hibernation (needs >= RAM size)
-  # swapDevices = [{
-  #   device = "/swapfile";
-  #   size = 32768;  # 32GB in MB
-  # }];
-  # Hibernation resume (if using swapfile on encrypted disk)
-  # Get offset: sudo filefrag -v /swapfile | head -4
-  # boot.resumeDevice = "/dev/disk/by-uuid/abc09bb6-98a0-468e-ad43-66eb930a048d";
-  # boot.kernelParams = [ "resume_offset=<offset>" ];
 
   # Encryption options (enable if disk is encrypted with LUKS)
-  # boot.initrd.luks.devices."cryptroot".allowDiscards = true;  # SSD TRIM support
+  # boot.initrd.luks.devices."cryptswap".allowDiscards = true;  # SSD TRIM
+  # boot.initrd.luks.devices."cryptroot".allowDiscards = true;  # SSD TRIM
   # boot.initrd.availableKernelModules = [ "aes_x86_64" "cryptd" ];  # faster crypto
+  # boot.resumeDevice = "/dev/mapper/cryptswap";  # hibernation
   # boot.plymouth.enable = true;  # nicer password prompt
 
   networking.hostName = "zenbook"; # Define your hostname.
