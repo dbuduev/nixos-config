@@ -18,19 +18,20 @@ sudo -i
 
 If you need Wi-Fi:
 
+Script: [`00-wifi.sh`](00-wifi.sh)
+
 ```bash
-wpa_cli
-> add_network
-0
-> set_network 0 ssid "SSID"
-OK
-> set_network 0 psk "PASSWORD"
-OK
-> set_network 0 key_mgmt WPA-PSK
-OK
-> enable_network 0
-OK
-> quit
+./00-wifi.sh "SSID" "PASSWORD"
+```
+
+Or manually:
+
+```bash
+wpa_cli -i wlan0 add_network
+wpa_cli -i wlan0 set_network 0 ssid '"SSID"'
+wpa_cli -i wlan0 set_network 0 psk '"PASSWORD"'
+wpa_cli -i wlan0 set_network 0 key_mgmt WPA-PSK
+wpa_cli -i wlan0 enable_network 0
 ```
 
 Wait a few seconds, then verify connectivity:
