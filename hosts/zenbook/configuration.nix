@@ -124,7 +124,7 @@
                 type = "ladspa";
                 name = "rnnoise";
                 plugin = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
-                label = "noise_suppressor_mono";
+                label = "noise_suppressor_stereo";
                 control = {
                   "VAD Threshold (%)" = 50.0;
                   "VAD Grace Period (ms)" = 200;
@@ -137,11 +137,15 @@
             "node.name" = "capture.rnnoise_source";
             "node.passive" = true;
             "audio.rate" = 48000;
+            "audio.channels" = 2;
+            "audio.position" = ["FL" "FR"];
           };
           "playback.props" = {
             "node.name" = "rnnoise_source";
             "media.class" = "Audio/Source";
             "audio.rate" = 48000;
+            "audio.channels" = 2;
+            "audio.position" = ["FL" "FR"];
           };
         };
       }
