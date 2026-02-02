@@ -152,6 +152,7 @@
     vim
     curl
     wget
+    keyd
     ghostty
     ripgrep
     fd
