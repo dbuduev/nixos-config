@@ -95,18 +95,21 @@
   };
 
   # Key remapping (kernel-level, works everywhere)
-  services.keyd = {
-    enable = true;
-    keyboards.default = {
-      ids = ["*"];
-      settings = {
-        "alt+shift" = {
-          "]" = "C-tab";
-          "[" = "C-S-tab";
-        };
-      };
-    };
-  };
+  # this was done to change tab navigation in FF
+  # but this broke my custom tab navigation in helix
+  # I attempted to map C-tab in helix but terminals don't handle it well.
+  # services.keyd = {
+  #   enable = true;
+  #   keyboards.default = {
+  #     ids = ["*"];
+  #     settings = {
+  #       "alt+shift" = {
+  #         "]" = "C-tab";
+  #         "[" = "C-S-tab";
+  #       };
+  #     };
+  #   };
+  # };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
