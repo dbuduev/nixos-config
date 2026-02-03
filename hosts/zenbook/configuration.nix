@@ -95,18 +95,18 @@
   };
 
   # Key remapping (kernel-level, works everywhere)
-  # services.keyd = {
-  #   enable = true;
-  #   keyboards.default = {
-  #     ids = ["*"];
-  #     settings = {
-  #       main = {
-  #         "leftalt+leftshift+[" = "leftcontrol-leftshift-tab"; # prev tab
-  #         "leftalt+leftshift+]" = "leftcontrol-tab"; # next tab
-  #       };
-  #     };
-  #   };
-  # };
+  services.keyd = {
+    enable = true;
+    keyboards.default = {
+      ids = ["*"];
+      settings = {
+        "alt+shift" = {
+          "]" = "C-tab";
+          "[" = "C-S-tab";
+        };
+      };
+    };
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
