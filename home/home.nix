@@ -374,7 +374,14 @@
         formatter = ["gofmt"];
         language-servers = ["gopls" "golangci-lint-langserver"];
       }
+      {
+        name = "janet";
+        language-servers = ["janet-lsp"];
+      }
     ];
+    languages.language-server.janet-lsp = {
+      command = "janet-lsp";
+    };
     languages.language-server.gopls = {
       command = "gopls";
       config = {
