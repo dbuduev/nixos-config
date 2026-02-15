@@ -109,7 +109,6 @@
           # This overloads the capslock key to function as both escape (when tapped) and control (when held) and remaps all modifiers to 'oneshot' keys.
           # Thus to produce the letter A you can now simply tap shift and then a instead of having to hold it. Finally it remaps insert to S-insert (paste on X11).
           "shift" = "oneshot(shift)";
-          "meta" = "oneshot(meta)";
           "control" = "oneshot(control)";
           "leftalt" = "oneshot(alt)";
           "rightalt" = "oneshot(altgr)";
