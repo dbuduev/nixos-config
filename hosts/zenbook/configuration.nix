@@ -258,6 +258,11 @@
     ];
   };
 
+  # Signal monitor hotplug to user service
+  services.udev.extraRules = ''
+    ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.coreutils}/bin/touch /tmp/monitor-hotplug"
+  '';
+
   services.libinput = {
     enable = true;
     touchpad = {
