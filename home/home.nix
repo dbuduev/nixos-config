@@ -174,7 +174,7 @@ in {
       keepassxc
       localsend
 
-      mozillavpn
+      nushell
     ]
     ++ lib.optionals (stdenv.hostPlatform.system == "x86_64-linux") [unstable-pkgs.slack]
     ++ (with unstable-pkgs; [
