@@ -116,6 +116,7 @@
       mitmproxy
 
       clipman
+      gnome-monitor-config
 
       keepassxc
       localsend
@@ -510,6 +511,9 @@
   dconf.settings = {
     "org/gnome/mutter" = {
       experimental-features = ["scale-monitor-framebuffer"];
+    };
+    "org/gnome/shell/overrides" = {
+      workspaces-only-on-primary = true;
     };
     "org/gnome/desktop/input-sources" = {
       xkb-options = ["caps:escape"];
