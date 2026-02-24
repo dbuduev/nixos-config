@@ -4,6 +4,7 @@
 {
   config,
   pkgs,
+  unstable-pkgs,
   ...
 }: {
   imports = [
@@ -157,7 +158,10 @@
   };
 
   # Install firefox.
-  programs.firefox.enable = true;
+  programs.firefox = {
+    enable = true;
+    package = unstable-pkgs.firefox;
+  };
 
   programs.zsh.enable = true;
 
