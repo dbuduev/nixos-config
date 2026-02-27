@@ -145,7 +145,6 @@ in {
       usbutils # lsusb
 
       # dev-tools
-      just
       gcc
       gdb
       lazygit
@@ -201,6 +200,7 @@ in {
       protobuf
 
       claude-code
+      just
 
       terraform-ls
       google-cloud-sdk
@@ -214,24 +214,22 @@ in {
     enable = true;
     lfs.enable = true;
     package = pkgs.git.override {withLibsecret = true;};
-    userName = "Dennis Buduev";
-    userEmail = "dbuduev@users.noreply.github.com";
-    extraConfig = {
+    settings = {
+      user.name = "Dennis Buduev";
+      user.email = "dbuduev@users.noreply.github.com";
       init.defaultBranch = "main";
       credential.helper = "libsecret";
       credential."https://github.com".username = "dbuduev";
       credential.credentialStore = "secretservice";
-
       core.excludesfile = "~/.config/git/.gitignore";
       commit.signoff = true;
       commit.gpgsign = false;
-    };
-
-    aliases = {
-      ci = "commit";
-      st = "status";
-      df = "diff";
-      co = "checkout";
+      alias = {
+        ci = "commit";
+        st = "status";
+        df = "diff";
+        co = "checkout";
+      };
     };
   };
 
@@ -388,7 +386,7 @@ in {
 
   programs.go = {
     enable = true;
-    goBin = ".local/bin";
+    env.GOBIN = "${config.home.homeDirectory}/.local/bin";
     package = unstable-pkgs.go_1_25;
   };
 
