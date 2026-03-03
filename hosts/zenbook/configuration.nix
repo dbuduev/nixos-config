@@ -146,11 +146,12 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.groups.devs = {};
+
   users.users.dennisb = {
     isNormalUser = true;
     description = "dennisb";
-    extraGroups = ["networkmanager" "wheel" "podman"];
+    extraGroups = ["networkmanager" "wheel" "podman" "devs"];
     shell = pkgs.zsh;
     packages = with pkgs; [
       # managed by home-manager
@@ -160,6 +161,7 @@
   users.users.coder = {
     isNormalUser = true;
     description = "coder";
+    extraGroups = ["devs"];
   };
 
   # Install firefox.
