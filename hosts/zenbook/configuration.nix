@@ -157,6 +157,11 @@
     ];
   };
 
+  users.users.coder = {
+    isNormalUser = true;
+    description = "coder";
+  };
+
   # Install firefox.
   programs.firefox = {
     enable = true;
