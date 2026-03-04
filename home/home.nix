@@ -129,6 +129,8 @@ in {
       iotop # io monitoring
       iftop # network monitoring
 
+      powertop
+
       # system call monitoring
       strace # system call monitoring
       ltrace # library call monitoring
