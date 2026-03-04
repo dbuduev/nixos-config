@@ -161,7 +161,7 @@
   users.users.coder = {
     isNormalUser = true;
     description = "coder";
-    extraGroups = ["devs"];
+    extraGroups = ["devs" "podman"];
   };
 
   # Install firefox.

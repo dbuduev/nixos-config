@@ -38,6 +38,7 @@
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = {inherit unstable-pkgs;};
               home-manager.users.dennisb = import ./home/home.nix;
+              home-manager.users.coder = import ./home/coder.nix;
               home-manager.backupFileExtension = "backup";
             }
           ]
