@@ -566,9 +566,6 @@ in {
 
   home.sessionPath = ["$HOME/.cargo/bin"];
   dconf.settings = {
-    "org/gnome/mutter" = {
-      experimental-features = ["scale-monitor-framebuffer"];
-    };
     "org/gnome/shell/overrides" = {
       workspaces-only-on-primary = true;
     };
