@@ -9,6 +9,7 @@
 
   home.packages = [
     unstable-pkgs.claude-code
+    pkgs.git
   ];
 
   home.sessionVariables = {
