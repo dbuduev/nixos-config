@@ -223,6 +223,7 @@ in {
       credential.helper = "libsecret";
       credential."https://github.com".username = "dbuduev";
       credential.credentialStore = "secretservice";
+      safe.directory = ["/home/shared/projects/cerbos-org/infrastructure" "/home/shared/projects/cerbos-org/cerbos"];
       core.excludesfile = "~/.config/git/.gitignore";
       commit.signoff = true;
       commit.gpgsign = false;
