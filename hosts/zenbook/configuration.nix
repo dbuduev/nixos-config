@@ -113,8 +113,12 @@
           "control" = "oneshot(control)";
           "leftalt" = "oneshot(alt)";
           "rightalt" = "oneshot(altgr)";
-          "capslock" = "control";
+          "capslock" = "layer(capslock)";
           "insert" = "S-insert";
+        };
+        "capslock:C" = {
+          "h" = "macro(C-b n)";
+          "l" = "macro(C-b p)";
         };
         # "alt+shift" = {
         #   "]" = "C-tab";
