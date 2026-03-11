@@ -4,60 +4,7 @@
   unstable-pkgs,
   lib,
   ...
-}: let
-  set-external-primary = let
-    gnome-monitor-config = "${pkgs.gnome-monitor-config}/bin/gnome-monitor-config";
-  in
-    pkgs.writeTextFile {
-      name = "set-external-primary";
-      executable = true;
-      destination = "/bin/set-external-primary";
-      text = ''
-        #!${pkgs.nushell}/bin/nu
-
-        sleep 2sec
-
-        let output = (do { ${gnome-monitor-config} list } | complete)
-        if $output.exit_code != 0 { return }
-
-        mut monitors = []
-        mut current = null
-
-        for line in ($output.stdout | lines) {
-          if ($line | str starts-with "Logical monitor") {
-            if $current != null {
-              $monitors = ($monitors | append $current)
-            }
-            $current = {}
-          } else if $current != null {
-            let pos = ($line | parse -r 'x: (?P<x>-?\d+), y: (?P<y>-?\d+), scale: (?P<scale>[\d.]+)')
-            if ($pos | is-not-empty) {
-              $current = ($current | merge ($pos | first))
-            } else {
-              let mon = ($line | parse -r 'Monitor: (?P<connector>[^,]+), (?P<mode>\S+)')
-              if ($mon | is-not-empty) {
-                $current = ($current | merge ($mon | first))
-              }
-            }
-          }
-        }
-        if $current != null {
-          $monitors = ($monitors | append $current)
-        }
-
-        if not ($monitors | any {|m| not ($m.connector | str starts-with "eDP-") }) {
-          return
-        }
-
-        let args = $monitors | each {|m|
-          let primary = if not ($m.connector | str starts-with "eDP-") { ["-p"] } else { [] }
-          ["-L"] | append $primary | append ["-x" $m.x "-y" $m.y "-s" $m.scale "-M" $m.connector "-m" $m.mode]
-        } | flatten
-
-        ${gnome-monitor-config} set ...$args
-      '';
-    };
-in {
+}: {
   home.username = "dennisb";
   home.homeDirectory = "/home/dennisb";
 
@@ -587,20 +534,6 @@ in {
       Restart = "always";
     };
   };
-  # Monitor hotplug: watch for udev signal and set external monitor as primary
-  systemd.user.paths.monitor-hotplug = {
-    Unit.Description = "Watch for monitor hotplug events";
-    Path.PathChanged = "/tmp/monitor-hotplug";
-    Install.WantedBy = ["graphical-session.target"];
-  };
-  systemd.user.services.monitor-hotplug = {
-    Unit.Description = "Set external monitor as primary";
-    Service = {
-      Type = "oneshot";
-      ExecStart = "${set-external-primary}/bin/set-external-primary";
-    };
-  };
-
   home.file.".config/containers/containers.conf".text = ''
     [network]
     default_network = "podman"
