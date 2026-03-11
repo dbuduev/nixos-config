@@ -113,7 +113,7 @@
           "control" = "oneshot(control)";
           "leftalt" = "oneshot(alt)";
           "rightalt" = "oneshot(altgr)";
-          "capslock" = "overload(control, esc)";
+          "capslock" = "overload(control)";
           "insert" = "S-insert";
         };
         # "alt+shift" = {
