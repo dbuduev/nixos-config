@@ -114,8 +114,8 @@
           "insert" = "S-insert";
         };
         "capslock:C" = {
-          "h" = "macro(C-b n)";
-          "l" = "macro(C-b p)";
+          "h" = "macro(C-b p)";
+          "l" = "macro(C-b n)";
         };
         # "alt+shift" = {
         #   "]" = "C-tab";
