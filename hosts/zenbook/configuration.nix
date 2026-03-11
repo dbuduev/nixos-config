@@ -116,6 +116,7 @@
         "capslock:C" = {
           "h" = "macro(C-b p)";
           "l" = "macro(C-b n)";
+          "j" = "macro(C-b w)";
         };
         # "alt+shift" = {
         #   "]" = "C-tab";
