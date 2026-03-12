@@ -17,3 +17,12 @@ update:
 
 upgrade:
 	@ topgrade --only rustup
+
+vm-build:
+	nixos-rebuild build-vm --flake .#devvm
+
+vm-run:
+	./result/bin/run-devvm-vm
+
+vm-ssh:
+	ssh -p 2222 dennisb@localhost

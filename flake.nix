@@ -57,6 +57,12 @@
         system = "x86_64-linux";
         hostName = "zenbook";
       };
+
+      # QEMU dev VM (x86_64, runs on zenbook)
+      devvm = mkSystem {
+        system = "x86_64-linux";
+        hostName = "devvm";
+      };
     };
   };
 }

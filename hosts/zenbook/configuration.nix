@@ -153,7 +153,7 @@
   users.users.dennisb = {
     isNormalUser = true;
     description = "dennisb";
-    extraGroups = ["networkmanager" "wheel" "podman" "devs"];
+    extraGroups = ["networkmanager" "wheel" "podman" "devs" "kvm"];
     shell = pkgs.zsh;
     packages = with pkgs; [
       # managed by home-manager
@@ -191,6 +191,9 @@
     dive
     podman-tui
     docker-compose
+
+    # VM hosting
+    qemu_kvm
   ];
 
   fonts.packages = with pkgs; [
