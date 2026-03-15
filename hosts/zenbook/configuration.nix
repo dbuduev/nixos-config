@@ -286,4 +286,5 @@
       tapping = true;
     };
   };
+  services.flatpak.enable = true;
 }
