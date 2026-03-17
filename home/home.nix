@@ -489,10 +489,6 @@
     config.load_env = true;
   };
 
-  programs.brave = {
-    enable = true;
-  };
-
   home.file.".local/share/navi/cheats" = {
     source = ./navi/cheats;
     recursive = true;
