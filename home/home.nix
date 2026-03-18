@@ -44,6 +44,7 @@
       yq-go # yaml processor https://github.com/mikefarah/yq
       eza # A modern replacement for ‘ls’
       bat
+      glow
       ed
       entr # Run arbitrary commands when files change
 
