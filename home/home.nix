@@ -232,7 +232,8 @@
   programs.zsh = {
     enable = true;
     autosuggestion.enable = false;
-    enableCompletion = true;
+    enableCompletion = false; # managed manually below for faster startup
+    completionInit = "";
     enableVteIntegration = true;
     envExtra = ''
       export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
@@ -262,6 +263,14 @@
     };
     initContent = let
       zshConfigEarlyInit = lib.mkOrder 500 ''
+        # Cached compinit: only regenerate dump once per day
+        autoload -Uz compinit
+        if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+          compinit
+        else
+          compinit -C
+        fi
+
         autoload edit-command-line
         zle -N edit-command-line
         bindkey '^x^e' edit-command-line
