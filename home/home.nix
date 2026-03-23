@@ -296,29 +296,25 @@
       "..." = "cd ../..";
       "...." = "cd ../../..";
     };
-    zplug = {
-      enable = true;
-      plugins = [
-        {
-          name = "Aloxaf/fzf-tab";
-        }
-        {
-          name = "Freed-Wu/fzf-tab-source";
-        }
-        {
-          name = "chisui/zsh-nix-shell";
-        }
-        {
-          name = "zsh-users/zsh-completions";
-        }
-        {
-          name = "zsh-users/zsh-syntax-highlighting";
-          tags = [
-            "defer:2"
-          ];
-        }
-      ];
-    };
+    plugins = [
+      {
+        name = "fzf-tab";
+        src = pkgs.zsh-fzf-tab + "/share/fzf-tab";
+      }
+      {
+        name = "fzf-tab-source";
+        src = pkgs.fetchFromGitHub {
+          owner = "Freed-Wu";
+          repo = "fzf-tab-source";
+          rev = "5463698036f5e23ef275b4b55c42551879ebfab4";
+          hash = "sha256-ar025RTlDFWEnE9Ql8WBz4tiBmz1B2tsZiRI2/mVCDI=";
+        };
+      }
+      {
+        name = "zsh-nix-shell";
+        src = pkgs.zsh-nix-shell + "/share/zsh-nix-shell";
+      }
+    ];
   };
   programs.bash.enable = false;
 
