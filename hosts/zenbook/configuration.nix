@@ -192,6 +192,9 @@
     podman-tui
     docker-compose
 
+    sqlite
+    bubblewrap
+
     # VM hosting
     qemu_kvm
   ];
