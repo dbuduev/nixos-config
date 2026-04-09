@@ -3,6 +3,7 @@
 # Shares home-manager dev tooling via the flake's mkSystem helper.
 {
   config,
+  lib,
   pkgs,
   unstable-pkgs,
   ...
@@ -126,7 +127,7 @@
     ];
   };
 
-  services.timesyncd.enable = true;
+  services.timesyncd.enable = lib.mkDefault true;
 
   system.stateVersion = "24.11";
 }
