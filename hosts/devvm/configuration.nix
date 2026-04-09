@@ -82,21 +82,23 @@
   };
 
   # QEMU VM settings (used by nixos-rebuild build-vm)
-  virtualisation = {
-    memorySize = 8192;
-    cores = 4;
-    diskSize = 40960;
-    forwardPorts = [
-      {
-        from = "host";
-        host.port = 2222;
-        guest.port = 22;
-      }
-    ];
-    sharedDirectories = {
-      projects = {
-        source = "/home/dennisb/projects";
-        target = "/home/dennisb/projects";
+  virtualisation.vmVariant = {
+    virtualisation = {
+      memorySize = 8192;
+      cores = 4;
+      diskSize = 40960;
+      forwardPorts = [
+        {
+          from = "host";
+          host.port = 2222;
+          guest.port = 22;
+        }
+      ];
+      sharedDirectories = {
+        projects = {
+          source = "/home/dennisb/projects";
+          target = "/home/dennisb/projects";
+        };
       };
     };
   };
