@@ -116,22 +116,17 @@
       grpcui # Web-based gRPC client
       tcpdump # Packet capture
       mitmproxy
+
+      nushell
     ]
     ++ lib.optionals (!isHeadless) [
       wireshark # GUI network protocol analyzer
-
-    ]
-    ++ lib.optionals (!isHeadless) [
       clipman
       gnome-monitor-config
 
       keepassxc
       localsend
     ]
-    ++ [
-      nushell
-    ]
-    ++ lib.optionals (stdenv.hostPlatform.system == "x86_64-linux") [unstable-pkgs.slack]
     ++ (with unstable-pkgs; [
       # Go
       gopls
@@ -183,6 +178,7 @@
       core.excludesfile = "~/.config/git/.gitignore";
       commit.signoff = true;
       commit.gpgsign = false;
+      pager.diff = "diffnav";
       alias = {
         ci = "commit";
         st = "status";
