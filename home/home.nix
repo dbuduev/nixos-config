@@ -3,6 +3,7 @@
   pkgs,
   unstable-pkgs,
   lib,
+  isHeadless ? false,
   ...
 }: {
   home.username = "dennisb";
@@ -111,18 +112,23 @@
       # Markdown
       marksman # LSP
 
-      wireshark # GUI network protocol analyzer
       grpcurl # CLI gRPC client
       grpcui # Web-based gRPC client
       tcpdump # Packet capture
       mitmproxy
+    ]
+    ++ lib.optionals (!isHeadless) [
+      wireshark # GUI network protocol analyzer
 
+    ]
+    ++ lib.optionals (!isHeadless) [
       clipman
       gnome-monitor-config
 
       keepassxc
       localsend
-
+    ]
+    ++ [
       nushell
     ]
     ++ lib.optionals (stdenv.hostPlatform.system == "x86_64-linux") [unstable-pkgs.slack]
@@ -517,7 +523,7 @@
   };
 
   home.sessionPath = ["$HOME/.cargo/bin"];
-  dconf.settings = {
+  dconf.settings = lib.mkIf (!isHeadless) {
     "org/gnome/shell/overrides" = {
       workspaces-only-on-primary = true;
     };
@@ -526,7 +532,7 @@
     };
   };
   # Enable clipman service
-  systemd.user.services.clipman = {
+  systemd.user.services.clipman = lib.mkIf (!isHeadless) {
     Unit = {
       Description = "Clipboard manager";
       After = ["graphical-session-pre.target"];

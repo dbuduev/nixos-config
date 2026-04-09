@@ -18,6 +18,7 @@
     mkSystem = {
       system,
       hostName,
+      isHeadless ? false,
       extraModules ? [],
     }: let
       unstable-pkgs = import nixpkgs-unstable {
@@ -36,7 +37,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {inherit unstable-pkgs;};
+              home-manager.extraSpecialArgs = {inherit unstable-pkgs isHeadless;};
               home-manager.users.dennisb = import ./home/home.nix;
               home-manager.users.coder = import ./home/coder.nix;
               home-manager.backupFileExtension = "backup";
@@ -62,6 +63,7 @@
       devvm = mkSystem {
         system = "x86_64-linux";
         hostName = "devvm";
+        isHeadless = true;
       };
     };
   };
