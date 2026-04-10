@@ -153,6 +153,7 @@
       claude-code
       just
 
+      opentofu
       terraform-ls
       google-cloud-sdk
 
@@ -499,6 +500,7 @@
     config.load_env = true;
   };
 
+  home.file.".local/bin/terraform".source = "${unstable-pkgs.opentofu}/bin/tofu";
   home.file.".local/share/navi/cheats" = {
     source = ./navi/cheats;
     recursive = true;
