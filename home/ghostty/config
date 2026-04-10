@@ -10,3 +10,4 @@ keybind = global:ctrl+grave_accent=toggle_quick_terminal
 # title bar
 gtk-titlebar-hide-when-maximized = true
 gtk-tabs-location = hidden
+keybind = ctrl+shift+b=toggle_tab_overview
