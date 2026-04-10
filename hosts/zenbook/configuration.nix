@@ -6,7 +6,9 @@
   pkgs,
   unstable-pkgs,
   ...
-}: {
+}: let
+  sharedIds = import ../../shared-ids.nix;
+in {
   imports = [
     ./mic-fix.nix # Mic boost fix + optional noise suppression
   ];
@@ -148,7 +150,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  users.groups.devs = {};
+  users.groups.devs.gid = sharedIds.devsGid;
 
   users.users.dennisb = {
     isNormalUser = true;

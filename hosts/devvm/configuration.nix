@@ -7,7 +7,9 @@
   pkgs,
   unstable-pkgs,
   ...
-}: {
+}: let
+  sharedIds = import ../../shared-ids.nix;
+in {
   # Boot
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -31,7 +33,7 @@
   };
 
   # Users
-  users.groups.devs = {};
+  users.groups.devs.gid = sharedIds.devsGid;
 
   users.users.dennisb = {
     isNormalUser = true;
@@ -64,6 +66,7 @@
     wget
     ripgrep
     fd
+    ghostty.terminfo
 
     # containers
     dive
