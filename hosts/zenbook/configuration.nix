@@ -154,6 +154,7 @@ in {
 
   users.users.dennisb = {
     isNormalUser = true;
+    uid = sharedIds.dennisbUid;
     description = "dennisb";
     extraGroups = ["networkmanager" "wheel" "podman" "devs" "kvm"];
     shell = pkgs.zsh;
