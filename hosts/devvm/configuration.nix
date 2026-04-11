@@ -90,7 +90,7 @@ in {
   virtualisation.vmVariant = {
     virtualisation = {
       memorySize = 8192;
-      cores = 4;
+      cores = 16;
       diskSize = 40960;
       forwardPorts = [
         {
