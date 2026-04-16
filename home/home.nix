@@ -216,6 +216,7 @@
       rust.disabled = true;
       package.disabled = true;
       line_break.disabled = true;
+      git_status.disabled = true; # 9p filesystem loop panic + slow
     };
   };
 
