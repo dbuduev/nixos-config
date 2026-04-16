@@ -101,7 +101,7 @@ in {
       ];
       sharedDirectories = {
         projects = {
-          source = "/home/dennisb/projects";
+          source = "/home/shared/projects";
           target = "/home/dennisb/projects";
         };
       };
