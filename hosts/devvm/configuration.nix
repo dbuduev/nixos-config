@@ -73,6 +73,8 @@ in {
     dive
     podman-tui
     docker-compose
+
+    sqlite
   ];
 
   # Containers
