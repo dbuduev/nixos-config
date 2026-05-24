@@ -203,7 +203,7 @@
 
   # starship - an customizable prompt for any shell
   programs.starship = {
-    enable = true;
+    enable = !isHeadless;
     # custom settings
     enableZshIntegration = true;
     settings = {
