@@ -553,6 +553,14 @@
       move-down = ["<Super><Ctrl>Down" "<Super><Shift>j"];
       move-up = ["<Super><Ctrl>Up" "<Super><Shift>k"];
       move-right = ["<Super><Ctrl>Right" "<Super><Shift>l"];
+      # Cross-display moves on hjkl. PaperWM's arrow defaults collide with
+      # GNOME's move-to-monitor (Super+Shift+arrow), which GNOME wins — so use
+      # letters, which GNOME never binds. Pattern: Ctrl = monitor level,
+      # add Shift to move the window instead of just hopping focus.
+      switch-monitor-left = ["<Super><Ctrl>h"];
+      switch-monitor-right = ["<Super><Ctrl>l"];
+      move-monitor-left = ["<Super><Ctrl><Shift>h"];
+      move-monitor-right = ["<Super><Ctrl><Shift>l"];
     };
 
     # Gaps/margins: PaperWM defaults to 20px everywhere, a touch airy on a
