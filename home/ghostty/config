@@ -21,3 +21,7 @@ keybind = ctrl+shift+d=toggle_window_decorations
 gtk-titlebar-hide-when-maximized = true
 gtk-tabs-location = hidden
 keybind = ctrl+shift+b=toggle_tab_overview
+
+# Breathing room between terminal text and the window edge (default 2).
+# Horizontal bumped to 5 now that windows sit flush to the screen.
+window-padding-x = 5
