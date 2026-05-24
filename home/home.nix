@@ -126,6 +126,8 @@
 
       keepassxc
       localsend
+
+      gnomeExtensions.paperwm # scrollable tiling inside GNOME (trial)
     ]
     ++ (with unstable-pkgs; [
       # Go
@@ -528,6 +530,48 @@
     };
     "org/gnome/desktop/input-sources" = {
       xkb-options = ["caps:escape"];
+    };
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+      # NOTE: this list is authoritative. Any extension you enabled by hand
+      # must be added here or GNOME will disable it on the next rebuild.
+      # Check current ones with: dconf read /org/gnome/shell/enabled-extensions
+      enabled-extensions = [
+        pkgs.gnomeExtensions.paperwm.extensionUuid
+      ];
+    };
+
+    # PaperWM navigation mirrors Helix/tmux muscle memory: Super+hjkl moves
+    # focus across the scroll, Super+Shift+hjkl moves the focused window.
+    # Arrow keys still work as PaperWM's documented defaults.
+    "org/gnome/shell/extensions/paperwm/keybindings" = {
+      switch-left = ["<Super>Left" "<Super>h"];
+      switch-down = ["<Super>Down" "<Super>j"];
+      switch-up = ["<Super>Up" "<Super>k"];
+      switch-right = ["<Super>Right" "<Super>l"];
+      move-left = ["<Super><Ctrl>Left" "<Super><Shift>h"];
+      move-down = ["<Super><Ctrl>Down" "<Super><Shift>j"];
+      move-up = ["<Super><Ctrl>Up" "<Super><Shift>k"];
+      move-right = ["<Super><Ctrl>Right" "<Super><Shift>l"];
+    };
+
+    # Gaps/margins: PaperWM defaults to 20px everywhere, a touch airy on a
+    # laptop. 10px is tighter without feeling cramped. Tune to taste.
+    "org/gnome/shell/extensions/paperwm" = {
+      window-gap = 10;
+      horizontal-margin = 10;
+      vertical-margin = 10;
+      vertical-margin-bottom = 10;
+    };
+
+    # Free Super+h / Super+l for PaperWM: GNOME binds them to minimize and
+    # lock-screen by default. Lock moves to Super+Ctrl+l (preserved); minimize
+    # is dropped since a tiling layout doesn't really use it.
+    "org/gnome/desktop/wm/keybindings" = {
+      minimize = [];
+    };
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      screensaver = ["<Super><Ctrl>l"];
     };
   };
   # Enable clipman service
