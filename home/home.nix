@@ -563,23 +563,25 @@
       move-monitor-right = ["<Super><Ctrl><Shift>l"];
     };
 
-    # Gaps/margins: PaperWM defaults to 20px everywhere, a touch airy on a
-    # laptop. 10px is tighter without feeling cramped. Tune to taste.
+    # Gaps/margins (PaperWM defaults to 20px). Minimal-seam setup: a 2px gap
+    # just to read the boundary between same-themed windows, zero edge margins
+    # to reclaim all screen real estate.
     "org/gnome/shell/extensions/paperwm" = {
-      window-gap = 10;
-      horizontal-margin = 10;
-      vertical-margin = 10;
-      vertical-margin-bottom = 10;
+      window-gap = 2;
+      horizontal-margin = 0;
+      vertical-margin = 0;
+      vertical-margin-bottom = 0;
     };
 
     # Free Super+h / Super+l for PaperWM: GNOME binds them to minimize and
-    # lock-screen by default. Lock moves to Super+Ctrl+l (preserved); minimize
-    # is dropped since a tiling layout doesn't really use it.
+    # lock-screen by default. Lock moves to Super+Ctrl+Delete (preserved; note
+    # Super+Ctrl+l is now switch-monitor-right); minimize is dropped since a
+    # tiling layout doesn't really use it.
     "org/gnome/desktop/wm/keybindings" = {
       minimize = [];
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      screensaver = ["<Super><Ctrl>l"];
+      screensaver = ["<Super><Ctrl>Delete"];
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ghostty/"
       ];

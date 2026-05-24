@@ -12,7 +12,12 @@ keybind = global:ctrl+grave_accent=toggle_quick_terminal
 # the full buffer in Helix — keyboard-driven replacement for tmux copy-mode.
 keybind = ctrl+shift+y=write_scrollback_file:copy
 
-# title bar
+# title bar / decorations
+# Fully borderless — PaperWM manages window framing, so no GTK chrome.
+# (GNOME/Mutter has no server-side decorations, so `none` is truly borderless.)
+window-decoration = none
+# Toggle decorations back on at runtime if ever needed.
+keybind = ctrl+shift+d=toggle_window_decorations
 gtk-titlebar-hide-when-maximized = true
 gtk-tabs-location = hidden
 keybind = ctrl+shift+b=toggle_tab_overview
