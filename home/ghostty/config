@@ -7,6 +7,11 @@ keybind = super+shift+[=previous_tab
 #MacOS only
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
+# Dump scrollback to a temp file and copy its path to the clipboard.
+# Workflow: press the key, then type `hx ` and paste (Ctrl+Shift+V) to open
+# the full buffer in Helix — keyboard-driven replacement for tmux copy-mode.
+keybind = ctrl+shift+y=write_scrollback_file:copy
+
 # title bar
 gtk-titlebar-hide-when-maximized = true
 gtk-tabs-location = hidden

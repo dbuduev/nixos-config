@@ -572,6 +572,16 @@
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
       screensaver = ["<Super><Ctrl>l"];
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ghostty/"
+      ];
+    };
+    # Super+G launches Ghostty from anywhere (PaperWM's Super+Return only opens
+    # a new window of the *focused* app). Mnemonic: G for ghostty.
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ghostty" = {
+      name = "Launch Ghostty";
+      command = "ghostty";
+      binding = "<Super>g";
     };
   };
   # Enable clipman service
