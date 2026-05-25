@@ -539,10 +539,17 @@
     # focus across the scroll, Super+Shift+hjkl moves the focused window.
     # Arrow keys still work as PaperWM's documented defaults.
     "org/gnome/shell/extensions/paperwm/keybindings" = {
-      switch-left = ["<Super>Left" "<Super>h"];
-      switch-down = ["<Super>Down" "<Super>j"];
-      switch-up = ["<Super>Up" "<Super>k"];
-      switch-right = ["<Super>Right" "<Super>l"];
+      # Cycling focus: bind the -loop variants (wrap at the ends of the strip /
+      # column) and clear the plain switch-* (which stop dead at the edge).
+      # h/l wrap around the column strip; j/k wrap within the current column.
+      switch-left = [];
+      switch-right = [];
+      switch-up = [];
+      switch-down = [];
+      switch-left-loop = ["<Super>Left" "<Super>h"];
+      switch-right-loop = ["<Super>Right" "<Super>l"];
+      switch-up-loop = ["<Super>Up" "<Super>k"];
+      switch-down-loop = ["<Super>Down" "<Super>j"];
       move-left = ["<Super><Ctrl>Left" "<Super><Shift>h"];
       move-down = ["<Super><Ctrl>Down" "<Super><Shift>j"];
       move-up = ["<Super><Ctrl>Up" "<Super><Shift>k"];

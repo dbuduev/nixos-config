@@ -19,8 +19,8 @@ Scrollable-tiling for GNOME (zenbook). Bindings reflect *this* config
 
 | Action | Binding |
 |---|---|
-| ★ Focus column left / right | `Super+h` / `Super+l`  (or `Super+←/→`) |
-| ★ Focus window up / down in column | `Super+k` / `Super+j`  (or `Super+↑/↓`) |
+| ★ Focus column left / right (wraps around the strip) | `Super+h` / `Super+l`  (or `Super+←/→`) |
+| ★ Focus window up / down in column (wraps within column) | `Super+k` / `Super+j`  (or `Super+↑/↓`) |
 | Focus next / previous column | `Super+.` / `Super+,` |
 | Last column | `Super+End` |
 | Window switcher (live preview) | `Super+Tab` / `Super+Shift+Tab`  ⚠ |
