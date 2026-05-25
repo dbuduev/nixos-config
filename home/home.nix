@@ -558,6 +558,11 @@
       switch-monitor-right = ["<Super><Ctrl>l"];
       move-monitor-left = ["<Super><Ctrl><Shift>h"];
       move-monitor-right = ["<Super><Ctrl><Shift>l"];
+      # Unbind switch-first (was Super+Home, "focus first column"). It collided
+      # with GNOME's switch-to-workspace-1 default (also Super+Home), and
+      # PaperWM's conflict resolver kept wiping our Super+1 workspace jump to
+      # empty. Freeing Super+Home removes the conflict so Super+1 sticks.
+      switch-first = [];
     };
 
     # Gaps/margins (PaperWM defaults to 20px). Minimal-seam setup: a 2px gap

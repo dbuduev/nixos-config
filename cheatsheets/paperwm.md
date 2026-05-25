@@ -20,7 +20,7 @@ Scrollable-tiling for GNOME (zenbook). Bindings reflect *this* config
 | ★ Focus column left / right | `Super+h` / `Super+l`  (or `Super+←/→`) |
 | ★ Focus window up / down in column | `Super+k` / `Super+j`  (or `Super+↑/↓`) |
 | Focus next / previous column | `Super+.` / `Super+,` |
-| First / last column | `Super+Home` / `Super+End` |
+| Last column | `Super+End` |
 | Window switcher (live preview) | `Super+Tab` / `Super+Shift+Tab`  ⚠ |
 
 ## Move windows (within the strip)
@@ -127,4 +127,5 @@ Scrollable-tiling for GNOME (zenbook). Bindings reflect *this* config
 - **GNOME wins `Super+Shift+arrow`** (its own move-to-monitor) — that's why PaperWM's arrow monitor-defaults don't fire. We rebound monitor moves to **hjkl** (above). Letter combos sidestep GNOME entirely.
 - **`Super+v`** (center vertically) and **`Super+Tab`** (window switcher) overlap GNOME's message-tray / app-switcher and may be swallowed. If one doesn't work, GNOME is grabbing it — we can rebind it the way we did the monitor keys.
 - **`Super+Ctrl+l` is NOT lock** here — it's focus-other-display. Lock moved to `Super+Ctrl+Delete`.
+- **PaperWM clears GNOME keys that collide with its own bindings** (`overrideConflicts`). This silently wiped `Super+1` (workspace 1): GNOME's `switch-to-workspace-1` defaults to `Super+Home`, which collided with PaperWM's `switch-first` — so `switch-first` is unbound here to free it. Lesson: if a GNOME keybind you set declaratively keeps reverting, check whether its *default* combo collides with a PaperWM binding.
 - All bindings live in `home/home.nix`; gaps are **2px window-gap, 0 margins** (PaperWM default is 20 everywhere). PaperWM re-reads keybindings live on `just switch`; the GNOME custom keys (`Super+G`, lock) apply live too.
