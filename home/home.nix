@@ -555,6 +555,14 @@
       switch-monitor-right = ["<Super><Ctrl>l"];
       move-monitor-left = ["<Super><Ctrl><Shift>h"];
       move-monitor-right = ["<Super><Ctrl><Shift>l"];
+      # Workspace<->display on the Alt+hjkl row. The defaults (swap =
+      # Super+Alt+arrow, move-space = Ctrl+Alt+Shift+arrow) collide with GNOME's
+      # switch-to-workspace-left/right (Super+Alt+arrow + Ctrl+Alt+arrow), which
+      # PaperWM's conflict resolver masks only fragilely; letters dodge it.
+      swap-monitor-left = ["<Super><Alt>h"];
+      swap-monitor-right = ["<Super><Alt>l"];
+      move-space-monitor-left = ["<Super><Alt><Shift>h"];
+      move-space-monitor-right = ["<Super><Alt><Shift>l"];
       # Unbind switch-first (was Super+Home, "focus first column"). It collided
       # with GNOME's switch-to-workspace-1 default (also Super+Home), and
       # PaperWM's conflict resolver kept wiping our Super+1 workspace jump to

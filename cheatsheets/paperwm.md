@@ -62,10 +62,11 @@ Scrollable-tiling for GNOME (zenbook). Bindings reflect *this* config
 |---|---|
 | ★ Focus other display | `Super+Ctrl+h` / `Super+Ctrl+l` |
 | ★ Move focused window to other display | `Super+Ctrl+Shift+h` / `Super+Ctrl+Shift+l` |
-| Swap the two displays' workspaces | `Super+Alt+←` / `Super+Alt+→` |
+| ★ Swap the two displays' workspaces | `Super+Alt+h` / `Super+Alt+l` |
+| ★ Move workspace to other display | `Super+Alt+Shift+h` / `Super+Alt+Shift+l` |
 
-> `move`-to-display moves the **focused window only**, not a whole multi-window column.
-> The arrow-key monitor defaults (`Super+Shift+←/→`) are dead — GNOME grabs them; use the hjkl set above. For vertically stacked displays, ask to add `Super+Ctrl+j/k`.
+> `move`-window-to-display moves the **focused window only**, not a whole multi-window column.
+> **All four were rebound to letters** because their arrow defaults collide with GNOME: `Super+Shift+←/→` (move-to-monitor) and `Super+Alt+←/→` + `Ctrl+Alt+←/→` (switch-to-workspace). GNOME wins those. For vertically stacked displays, ask to add the `j/k` variants.
 
 ## Workspaces (4 fixed, per monitor)
 
