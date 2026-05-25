@@ -525,9 +525,6 @@
 
   home.sessionPath = ["$HOME/.cargo/bin"];
   dconf.settings = lib.mkIf (!isHeadless) {
-    "org/gnome/desktop/input-sources" = {
-      xkb-options = ["caps:escape"];
-    };
     "org/gnome/shell" = {
       disable-user-extensions = false;
       # NOTE: this list is authoritative. Any extension you enabled by hand
