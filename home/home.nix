@@ -525,9 +525,6 @@
 
   home.sessionPath = ["$HOME/.cargo/bin"];
   dconf.settings = lib.mkIf (!isHeadless) {
-    "org/gnome/shell/overrides" = {
-      workspaces-only-on-primary = true;
-    };
     "org/gnome/desktop/input-sources" = {
       xkb-options = ["caps:escape"];
     };
@@ -573,12 +570,45 @@
       vertical-margin-bottom = 0;
     };
 
+    # Fixed pool of 4 workspaces instead of GNOME's dynamic auto-managed set,
+    # for stable indices. num-workspaces only applies when dynamic is off.
+    # PaperWM presents each as an independent scrollable space.
+    "org/gnome/mutter" = {
+      dynamic-workspaces = false;
+    };
+    "org/gnome/desktop/wm/preferences" = {
+      num-workspaces = 4;
+    };
+
     # Free Super+h / Super+l for PaperWM: GNOME binds them to minimize and
     # lock-screen by default. Lock moves to Super+Ctrl+Delete (preserved; note
     # Super+Ctrl+l is now switch-monitor-right); minimize is dropped since a
     # tiling layout doesn't really use it.
     "org/gnome/desktop/wm/keybindings" = {
       minimize = [];
+      # Direct workspace jumps. PaperWM cooperates: it hooks Mutter's generic
+      # switch-workspace signal, so native switch-to-workspace-N drives its
+      # spaces (incl. non-adjacent jumps). Frees the same keys from GNOME's
+      # dash app-launch in the shell block below.
+      switch-to-workspace-1 = ["<Super>1"];
+      switch-to-workspace-2 = ["<Super>2"];
+      switch-to-workspace-3 = ["<Super>3"];
+      switch-to-workspace-4 = ["<Super>4"];
+      # Send focused window to workspace N (and follow it there). PaperWM
+      # re-tiles it: the destination workspace's window-added handler runs
+      # insertWindow. Super+Shift+digits are free in GNOME.
+      move-to-workspace-1 = ["<Super><Shift>1"];
+      move-to-workspace-2 = ["<Super><Shift>2"];
+      move-to-workspace-3 = ["<Super><Shift>3"];
+      move-to-workspace-4 = ["<Super><Shift>4"];
+    };
+    # Free Super+1..4 from GNOME's "launch favourite app N" (dash); Super+5..9
+    # still launch dash favourites.
+    "org/gnome/shell/keybindings" = {
+      switch-to-application-1 = [];
+      switch-to-application-2 = [];
+      switch-to-application-3 = [];
+      switch-to-application-4 = [];
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
       screensaver = ["<Super><Ctrl>Delete"];
