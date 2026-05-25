@@ -60,13 +60,17 @@ Scrollable-tiling for GNOME (zenbook). Bindings reflect *this* config
 
 | Action | Binding |
 |---|---|
-| ★ Focus other display | `Super+Ctrl+h` / `Super+Ctrl+l` |
-| ★ Move focused window to other display | `Super+Ctrl+Shift+h` / `Super+Ctrl+Shift+l` |
-| ★ Swap the two displays' workspaces | `Super+Alt+h` / `Super+Alt+l` |
-| ★ Move workspace to other display | `Super+Alt+Shift+h` / `Super+Alt+Shift+l` |
+Direction follows hjkl: `k`/`j` = above/below, `h`/`l` = left/right. Bind all four; only the directions with an actual neighbour fire.
 
-> `move`-window-to-display moves the **focused window only**, not a whole multi-window column.
-> **All four were rebound to letters** because their arrow defaults collide with GNOME: `Super+Shift+←/→` (move-to-monitor) and `Super+Alt+←/→` + `Ctrl+Alt+←/→` (switch-to-workspace). GNOME wins those. For vertically stacked displays, ask to add the `j/k` variants.
+| Action | Modifier (+ direction key) |
+|---|---|
+| ★ Focus other display | `Super+Ctrl+` `hjkl` |
+| ★ Move focused window to other display | `Super+Ctrl+Shift+` `hjkl` |
+| ★ Swap the two displays' workspaces | `Super+Alt+` `hjkl` |
+| ★ Move workspace to other display | `Super+Alt+Shift+` `hjkl` |
+
+> **This setup stacks the displays vertically**, so `k`/`j` (above/below) are the live keys; `h`/`l` (left/right) no-op until you arrange them side-by-side.
+> `move`-window-to-display moves the **focused window only**, not a whole column. Letters are used (not arrows) because the arrow defaults collide with GNOME: `Super+Shift+←/→` (move-to-monitor) and `Super+Alt+←/→`+`Ctrl+Alt+←/→` (switch-to-workspace).
 
 ## Workspaces (4 fixed, per monitor)
 

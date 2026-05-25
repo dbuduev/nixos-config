@@ -547,22 +547,29 @@
       move-down = ["<Super><Ctrl>Down" "<Super><Shift>j"];
       move-up = ["<Super><Ctrl>Up" "<Super><Shift>k"];
       move-right = ["<Super><Ctrl>Right" "<Super><Shift>l"];
-      # Cross-display moves on hjkl. PaperWM's arrow defaults collide with
-      # GNOME's move-to-monitor (Super+Shift+arrow), which GNOME wins — so use
-      # letters, which GNOME never binds. Pattern: Ctrl = monitor level,
-      # add Shift to move the window instead of just hopping focus.
+      # Cross-display actions on hjkl letters (PaperWM's arrow defaults collide
+      # with GNOME's move-to-monitor / switch-to-workspace; letters dodge it).
+      # h/l = left/right neighbour, j/k = below/above neighbour — bind all four
+      # directions so it works whatever the layout. NB: this setup stacks the
+      # two displays vertically, so j/k is the live pair (h/l no-op: no L/R
+      # neighbour). Ctrl = focus display, +Shift = move window to display;
+      # Alt = swap workspaces, +Shift = move workspace to display.
       switch-monitor-left = ["<Super><Ctrl>h"];
       switch-monitor-right = ["<Super><Ctrl>l"];
+      switch-monitor-below = ["<Super><Ctrl>j"];
+      switch-monitor-above = ["<Super><Ctrl>k"];
       move-monitor-left = ["<Super><Ctrl><Shift>h"];
       move-monitor-right = ["<Super><Ctrl><Shift>l"];
-      # Workspace<->display on the Alt+hjkl row. The defaults (swap =
-      # Super+Alt+arrow, move-space = Ctrl+Alt+Shift+arrow) collide with GNOME's
-      # switch-to-workspace-left/right (Super+Alt+arrow + Ctrl+Alt+arrow), which
-      # PaperWM's conflict resolver masks only fragilely; letters dodge it.
+      move-monitor-below = ["<Super><Ctrl><Shift>j"];
+      move-monitor-above = ["<Super><Ctrl><Shift>k"];
       swap-monitor-left = ["<Super><Alt>h"];
       swap-monitor-right = ["<Super><Alt>l"];
+      swap-monitor-below = ["<Super><Alt>j"];
+      swap-monitor-above = ["<Super><Alt>k"];
       move-space-monitor-left = ["<Super><Alt><Shift>h"];
       move-space-monitor-right = ["<Super><Alt><Shift>l"];
+      move-space-monitor-below = ["<Super><Alt><Shift>j"];
+      move-space-monitor-above = ["<Super><Alt><Shift>k"];
       # Unbind switch-first (was Super+Home, "focus first column"). It collided
       # with GNOME's switch-to-workspace-1 default (also Super+Home), and
       # PaperWM's conflict resolver kept wiping our Super+1 workspace jump to
