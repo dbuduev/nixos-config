@@ -112,13 +112,12 @@ in {
           "control" = "oneshot(control)";
           "leftalt" = "oneshot(alt)";
           "rightalt" = "oneshot(altgr)";
-          "capslock" = "layer(capslock)";
+          # Caps held = Super (Meta) — the heavily-used PaperWM modifier, now
+          # on the home row. Control lives on the physical Left-Ctrl (oneshot
+          # above). Replaces the old caps+hjkl tmux window-nav macros, which
+          # PaperWM's Super+hjkl now covers (caps held = Super, so same keys).
+          "capslock" = "layer(meta)";
           "insert" = "S-insert";
-        };
-        "capslock:C" = {
-          "h" = "macro(C-b p)";
-          "l" = "macro(C-b n)";
-          "j" = "macro(C-b w)";
         };
         # "alt+shift" = {
         #   "]" = "C-tab";

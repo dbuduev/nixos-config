@@ -5,6 +5,8 @@ Scrollable-tiling for GNOME (zenbook). Bindings reflect *this* config
 
 **Legend:** ★ = customized/added in our config · ⚠ = known GNOME conflict (see Gotchas)
 
+> **Super = Caps Lock (held)** — remapped via keyd (`hosts/zenbook/configuration.nix`). Every `Super+…` chord below is a Caps-hold. Control is on the physical Left-Ctrl key.
+
 ## Mental model
 
 - The workspace is an **infinite horizontal strip of columns**; you scroll focus across it.
