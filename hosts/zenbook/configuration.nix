@@ -168,12 +168,6 @@ in {
     extraGroups = ["devs" "podman"];
   };
 
-  # Install firefox.
-  programs.firefox = {
-    enable = true;
-    package = unstable-pkgs.firefox;
-  };
-
   programs.zsh.enable = true;
 
   # List packages installed in system profile. To search, run:
