@@ -5,7 +5,12 @@
   lib,
   isHeadless ? false,
   ...
-}: {
+}: let
+  # spork, pinned via Nix purely for the janet-format binary (it hardcodes its
+  # own syspath, so it ignores the writable JANET_PATH set below). Other Janet
+  # libs are managed imperatively with `jpm install` into that writable tree.
+  janet-spork = pkgs.callPackage ./janet-spork.nix {janet = unstable-pkgs.janet;};
+in {
   home.username = "dennisb";
   home.homeDirectory = "/home/dennisb";
 
@@ -161,6 +166,7 @@
 
       janet
       jpm
+      janet-spork # janet-format
 
       nom # RSS reader
 
@@ -244,9 +250,13 @@
     completionInit = "";
     enableVteIntegration = true;
     envExtra = ''
-      export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
+      export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.local/share/janet/bin"
       export LESS='-F -g -i -M -R -S -w -X -z-4'
       export EDITOR=vim
+      # Writable Janet module tree for imperative `jpm install`. In .zshenv (via
+      # envExtra) so every new shell sees it without a re-login, unlike
+      # home.sessionVariables which only load once per login session.
+      export JANET_PATH="$HOME/.local/share/janet"
     '';
     autocd = true;
     cdpath = ["/home/dennisb/projects"];
@@ -393,6 +403,8 @@
       }
       {
         name = "janet";
+        auto-format = true;
+        formatter.command = "janet-format";
         language-servers = ["janet-lsp"];
       }
     ];
