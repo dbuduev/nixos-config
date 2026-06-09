@@ -6,12 +6,14 @@
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    claude-code.url = "github:sadjow/claude-code-nix";
   };
 
   outputs = {
     self,
     nixpkgs,
     nixpkgs-unstable,
+    claude-code,
     home-manager,
     ...
   } @ inputs: let
@@ -24,6 +26,7 @@
       unstable-pkgs = import nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
+        overlays = [claude-code.overlays.default];
       };
     in
       nixpkgs.lib.nixosSystem {
