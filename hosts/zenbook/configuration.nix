@@ -21,6 +21,11 @@ in {
   boot.kernelPackages = pkgs.linuxPackages_latest;
   services.xserver.videoDrivers = ["amdgpu"];
   hardware.amdgpu.initrd.enable = true;
+
+  # Vulkan (RADV via Mesa) for GPU compute — used by llama.cpp on the
+  # Radeon 890M iGPU. The iGPU shares system RAM (16 GB GTT by default),
+  # plenty for a 12B model at Q4 (~8 GB).
+  hardware.graphics.enable = true;
   services.power-profiles-daemon.enable = false;
   services.tlp.enable = true;
   services.fwupd.enable = true;
@@ -190,6 +195,11 @@ in {
 
     sqlite
     bubblewrap
+
+    # Local LLM inference — llama.cpp built with the Vulkan/RADV backend
+    # for the Radeon 890M. Provides llama-cli and llama-server.
+    (unstable-pkgs.llama-cpp.override {vulkanSupport = true;})
+    vulkan-tools # vulkaninfo — for verifying the GPU is detected
 
     # VM hosting
     qemu_kvm
