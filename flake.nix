@@ -2,8 +2,8 @@
   description = "NixOS flake configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     claude-code.url = "github:sadjow/claude-code-nix";
@@ -21,6 +21,7 @@
       system,
       hostName,
       isHeadless ? false,
+      hasCoder ? true, # mb-vm has no `coder` system user
       extraModules ? [],
     }: let
       unstable-pkgs = import nixpkgs-unstable {
@@ -42,9 +43,11 @@
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = {inherit unstable-pkgs isHeadless;};
               home-manager.users.dennisb = import ./home/home.nix;
-              home-manager.users.coder = import ./home/coder.nix;
               home-manager.backupFileExtension = "backup";
             }
+            (nixpkgs.lib.optionalAttrs hasCoder {
+              home-manager.users.coder = import ./home/coder.nix;
+            })
           ]
           ++ extraModules;
       };
@@ -54,6 +57,7 @@
       mb-vm = mkSystem {
         system = "aarch64-linux";
         hostName = "vm";
+        hasCoder = false;
       };
 
       # Zenbook S16 (x86_64)
