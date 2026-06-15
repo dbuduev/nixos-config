@@ -11,6 +11,7 @@
   sharedIds = import ../../shared-ids.nix;
 in {
   # Boot
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
