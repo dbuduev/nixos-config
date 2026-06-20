@@ -228,6 +228,8 @@ in {
   #   KbdInteractiveAuthentication = false;
   # };
 
+  networking.nftables.enable = true;
+
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [53317]; # LocalSend
   networking.firewall.allowedUDPPorts = [53317]; # LocalSend
