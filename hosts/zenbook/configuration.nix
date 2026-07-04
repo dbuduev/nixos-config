@@ -74,6 +74,63 @@ in {
     0.0.0.0 v.redd.it
   '';
 
+  # Local filtering DNS resolver (ads + malware/phishing threat feeds).
+  services.blocky = {
+    enable = true;
+    settings = {
+      ports.dns = 53;
+
+      # Plain-IP resolver used only to bootstrap the DoH upstream hostnames,
+      # since the system's own DNS now points at blocky.
+      bootstrapDns = [
+        {
+          upstream = "https://one.one.one.one/dns-query";
+          ips = ["1.1.1.1" "1.0.0.1"];
+        }
+      ];
+
+      upstreams.groups.default = [
+        "https://one.one.one.one/dns-query"
+        "https://dns.quad9.net/dns-query"
+      ];
+
+      blocking = {
+        blockType = "zeroIp";
+        # Serve immediately on boot; refresh lists in the background so a
+        # failed download can't block startup.
+        loading = {
+          strategy = "fast";
+          downloads = {
+            timeout = "60s";
+            attempts = 3;
+          };
+        };
+        denylists = {
+          ads = [
+            "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/hosts/pro.txt"
+            "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+          ];
+          threat = [
+            "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/hosts/tif.txt"
+            "https://phishing.army/download/phishing_army_blocklist_extended.txt"
+          ];
+        };
+        clientGroupsBlock.default = ["ads" "threat"];
+      };
+
+      caching = {
+        minTime = "5m";
+        maxTime = "30m";
+        prefetching = true;
+      };
+    };
+  };
+
+  # Route system DNS through blocky and stop NetworkManager from overriding
+  # it with DHCP-provided servers.
+  networking.nameservers = ["127.0.0.1"];
+  networking.networkmanager.dns = "none";
+
   # Set your time zone.
   time.timeZone = "Australia/Melbourne";
 
