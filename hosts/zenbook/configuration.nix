@@ -66,6 +66,14 @@ in {
   # Enable networking
   networking.networkmanager.enable = true;
 
+  networking.extraHosts = ''
+    0.0.0.0 reddit.com
+    0.0.0.0 www.reddit.com
+    0.0.0.0 old.reddit.com
+    0.0.0.0 i.redd.it
+    0.0.0.0 v.redd.it
+  '';
+
   # Set your time zone.
   time.timeZone = "Australia/Melbourne";
 
