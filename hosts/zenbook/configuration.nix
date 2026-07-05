@@ -126,6 +126,9 @@ in {
         maxTime = "30m";
         prefetching = true;
       };
+
+      # Don't log every DNS query to the journal.
+      queryLog.type = "none";
     };
   };
 
