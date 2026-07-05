@@ -139,7 +139,6 @@ in {
       gopls
       gops
       gotestsum
-      golangci-lint-langserver
 
       syft
 
@@ -399,7 +398,7 @@ in {
         name = "go";
         auto-format = true;
         formatter = ["gofmt"];
-        language-servers = ["gopls" "golangci-lint-langserver"];
+        language-servers = ["gopls"];
       }
       {
         name = "janet";
