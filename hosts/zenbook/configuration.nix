@@ -80,6 +80,9 @@ in {
     settings = {
       ports.dns = 53;
 
+      # force IPv4 for upstreams and blocklist downloads
+      connectIPVersion = "v4";
+
       # Plain-IP resolver used only to bootstrap the DoH upstream hostnames,
       # since the system's own DNS now points at blocky.
       bootstrapDns = [
