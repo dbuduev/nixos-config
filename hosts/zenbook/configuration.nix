@@ -26,6 +26,11 @@ in {
   # Radeon 890M iGPU. The iGPU shares system RAM (16 GB GTT by default),
   # plenty for a 12B model at Q4 (~8 GB).
   hardware.graphics.enable = true;
+
+  # Disable Bluetooth
+  hardware.bluetooth.enable = false;
+  hardware.bluetooth.powerOnBoot = false;
+
   services.power-profiles-daemon.enable = false;
   services.tlp.enable = true;
   services.fwupd.enable = true;
