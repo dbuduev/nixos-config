@@ -84,6 +84,8 @@ in {
     enable = true;
     settings = {
       ports.dns = 53;
+      # REST API for runtime control (e.g. `blocky blocking disable --duration 5m`).
+      ports.http = "127.0.0.1:4000";
 
       # force IPv4 for upstreams and blocklist downloads
       connectIPVersion = "v4";
@@ -259,6 +261,7 @@ in {
     wget
     keyd
     ghostty
+    blocky # CLI for runtime control of the blocky DNS service (blocking disable/enable)
     ripgrep
     fd
     wl-clipboard
