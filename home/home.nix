@@ -106,6 +106,7 @@ in {
       gdb
       lazygit
       clang-tools
+      valgrind
 
       #
       # image and document rendering
