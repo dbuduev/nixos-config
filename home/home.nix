@@ -102,6 +102,7 @@ in {
 
       # dev-tools
       gcc
+      glibc.static
       gdb
       lazygit
       clang-tools
