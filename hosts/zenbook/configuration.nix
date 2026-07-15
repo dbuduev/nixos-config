@@ -282,7 +282,11 @@ in {
 
     # VM hosting
     qemu_kvm
+
+    man-pages
+    man-pages-posix
   ];
+  documentation.dev.enable = true;
 
   fonts.packages = with pkgs; [
     pkgs.nerd-fonts._0xproto
