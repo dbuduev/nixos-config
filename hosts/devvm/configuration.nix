@@ -43,6 +43,9 @@ in {
     extraGroups = ["networkmanager" "wheel" "podman" "devs"];
     shell = pkgs.zsh;
     initialPassword = "changeme";
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPHtRI4thj9AAgfnEekhYusEmMoxFSXX+/TlY9pC7l7w zenbook->devvm sync"
+    ];
   };
 
   users.users.coder = {
@@ -51,11 +54,13 @@ in {
     extraGroups = ["devs" "podman"];
   };
 
-  # SSH access from host
+  # SSH access from host (forward is loopback-only, see forwardPorts below)
   services.openssh = {
     enable = true;
     settings = {
-      PasswordAuthentication = true; # for initial setup; switch to keys later
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+      KbdInteractiveAuthentication = false;
     };
   };
 
@@ -98,6 +103,7 @@ in {
       forwardPorts = [
         {
           from = "host";
+          host.address = "127.0.0.1"; # only reachable from the zenbook itself
           host.port = 2222;
           guest.port = 22;
         }
