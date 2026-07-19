@@ -83,7 +83,7 @@ in {
   services.blocky = {
     enable = true;
     settings = {
-      ports.dns = 53;
+      ports.dns = "127.0.0.1:53";
       # REST API for runtime control (e.g. `blocky blocking disable --duration 5m`).
       ports.http = "127.0.0.1:4000";
 
