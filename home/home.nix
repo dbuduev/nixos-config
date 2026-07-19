@@ -671,7 +671,7 @@ in {
     };
     Install.WantedBy = ["graphical-session.target"];
     Service = {
-      ExecStart = "${pkgs.clipman}/bin/clipman store";
+      ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste -t text --watch ${pkgs.clipman}/bin/clipman store";
       Restart = "always";
     };
   };
