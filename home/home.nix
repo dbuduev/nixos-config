@@ -605,6 +605,11 @@ in {
     # to reclaim all screen real estate.
     "org/gnome/shell/extensions/paperwm" = {
       window-gap = 2;
+      # Where new windows land relative to the focused one: RIGHT 0, LEFT 1,
+      # START 2, END 3. Pinned because PaperWM lets this be flipped at runtime
+      # (Super+Shift+w cycles it, as does the topbar position icon) and the
+      # change persists in dconf.
+      open-window-position = 0;
       horizontal-margin = 0;
       vertical-margin = 0;
       vertical-margin-bottom = 0;
