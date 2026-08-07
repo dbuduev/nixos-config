@@ -51,6 +51,7 @@ in {
       eza # A modern replacement for ‘ls’
       bat
       glow
+      pandoc
       ed
       entr # Run arbitrary commands when files change
 
@@ -384,6 +385,7 @@ in {
       keys.normal = {
         "A-}" = "goto_next_buffer";
         "A-{" = "goto_previous_buffer";
+        space.m = ":sh pandoc %{buffer_name} -s --katex -o /tmp/preview.html && xdg-open /tmp/preview.html";
       };
     };
     languages.language = [
