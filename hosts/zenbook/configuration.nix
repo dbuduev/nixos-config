@@ -28,8 +28,8 @@ in {
   hardware.graphics.enable = true;
 
   # Disable Bluetooth
-  hardware.bluetooth.enable = false;
-  hardware.bluetooth.powerOnBoot = false;
+  hardware.bluetooth.enable = true;
+  # hardware.bluetooth.powerOnBoot = false;
 
   services.power-profiles-daemon.enable = false;
   services.tlp.enable = true;
