@@ -189,6 +189,8 @@ in {
       core.excludesfile = "~/.config/git/.gitignore";
       commit.signoff = true;
       commit.gpgsign = false;
+      user.signingkey = "21DE77AE25487A67";
+      tag.gpgSign = true;
       pager.diff = "diffnav";
       alias = {
         ci = "commit";
@@ -197,6 +199,14 @@ in {
         co = "checkout";
       };
     };
+  };
+
+  # GPG for signing git tags; gpg-agent caches the passphrase and uses the
+  # GNOME pinentry dialog to prompt for it.
+  programs.gpg.enable = true;
+  services.gpg-agent = {
+    enable = true;
+    pinentry.package = pkgs.pinentry-gnome3;
   };
 
   home.file.".config/git/.gitignore".text = ''
