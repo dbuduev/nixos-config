@@ -374,7 +374,7 @@ in {
   programs.go = {
     enable = true;
     env.GOBIN = "${config.home.homeDirectory}/.local/bin";
-    package = unstable-pkgs.go_1_25;
+    package = unstable-pkgs.go_1_27;
   };
 
   programs.helix = {
