@@ -614,6 +614,7 @@ in {
     # just to read the boundary between same-themed windows, zero edge margins
     # to reclaim all screen real estate.
     "org/gnome/shell/extensions/paperwm" = {
+      show-focus-mode-icon = false;
       window-gap = 2;
       # Where new windows land relative to the focused one: RIGHT 0, LEFT 1,
       # START 2, END 3. Pinned because PaperWM lets this be flipped at runtime
