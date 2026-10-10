@@ -54,6 +54,7 @@ in {
       pandoc
       ed
       entr # Run arbitrary commands when files change
+      bc # arbitrary precision calculator
 
       # networking tools
       mtr # A network diagnostic tool
@@ -108,6 +109,9 @@ in {
       lazygit
       clang-tools
       valgrind
+      # For Python packages (e.g. requests, numpy), use
+      # python3.withPackages (ps: [ ps.requests ]) instead of pip.
+      python3
 
       #
       # image and document rendering
