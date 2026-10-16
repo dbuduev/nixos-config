@@ -154,10 +154,6 @@ in {
 
       bazelisk
 
-      # Zig
-      zig_0_15
-      zls
-
       lldb
 
       buf
