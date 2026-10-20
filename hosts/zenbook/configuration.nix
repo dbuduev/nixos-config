@@ -258,6 +258,11 @@ in {
     keyd
     ghostty
     blocky # CLI for runtime control of the blocky DNS service (blocking disable/enable)
+    # Log in to captive-portal wifi; temporarily bypasses blocky DNS. See the script.
+    (writeShellApplication {
+      name = "captive-login";
+      text = builtins.readFile ./captive-login.sh;
+    })
     ripgrep
     fd
     wl-clipboard
