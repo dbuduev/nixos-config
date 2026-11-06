@@ -171,8 +171,6 @@ in {
       janet-spork # janet-format
 
       nom # RSS reader
-
-      diffnav
     ]);
   programs.git = {
     enable = true;
@@ -191,7 +189,6 @@ in {
       commit.gpgsign = false;
       user.signingkey = "21DE77AE25487A67";
       tag.gpgSign = true;
-      pager.diff = "diffnav";
       alias = {
         ci = "commit";
         st = "status";
