@@ -139,6 +139,7 @@ in {
       keepassxc
       localsend
       zathura # vim-style document viewer (PDF/EPUB via mupdf)
+      foliate # GNOME e-book reader
 
       gnomeExtensions.paperwm # scrollable tiling inside GNOME (trial)
     ]
