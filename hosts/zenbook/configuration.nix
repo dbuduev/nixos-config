@@ -28,7 +28,13 @@ in {
   # hardware.bluetooth.powerOnBoot = false;
 
   services.power-profiles-daemon.enable = false;
-  services.tlp.enable = true;
+  services.tlp = {
+    enable = true;
+    settings = {
+      # TLP defaults to "performance" on AC, which pins the fans at ~6000 RPM even when idle
+      PLATFORM_PROFILE_ON_AC = "balanced";
+    };
+  };
   services.fwupd.enable = true;
 
   # Zram: optional compressed RAM swap (in addition to swap partition)
