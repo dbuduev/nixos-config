@@ -67,8 +67,8 @@ Bindings reflect `home/niri/config.kdl`. They follow the PaperWM conventions
 | Move workspace to other display | `Super+Alt+Shift+` |
 
 > ≠ No "swap workspaces between displays" (`Super+Alt+hjkl` in PaperWM).
-> Displays are stacked vertically, so `j`/`k` are the live keys — once the
-> `output` positions in `config.kdl` are filled in (see Gotchas).
+> Displays are stacked vertically (Dell above, laptop panel below), so
+> `j`/`k` are the live keys; `h`/`l` no-op.
 
 ## Workspaces
 
@@ -100,9 +100,9 @@ Bindings reflect `home/niri/config.kdl`. They follow the PaperWM conventions
 
 ## Gotchas
 
-- **Output positions are not set yet.** Niri lays displays out side by side by
-  default. Run `niri msg outputs`, then fill in the two commented `output`
-  blocks in `home/niri/config.kdl` to stack them vertically.
+- **Output positions are pinned** in `home/niri/config.kdl` (`HDMI-A-1` above
+  `eDP-1`). On a different external monitor, check `niri msg outputs` and
+  adjust; an unknown output is placed to the right automatically.
 - **X11 apps** run through `xwayland-satellite`, which niri starts on demand.
 - **No polkit authentication agent** is started, so GUI privilege prompts
   won't appear in niri (terminal `sudo` is unaffected).

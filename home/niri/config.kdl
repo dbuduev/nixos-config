@@ -20,15 +20,17 @@ input {
     }
 }
 
-// The two displays are stacked vertically (external HDMI above, built-in
-// below). Niri places outputs side by side unless told otherwise, so set the
-// positions once the real names and logical sizes are known:
-// run `niri msg outputs` inside the session, then fill in and drop the "/-".
-// y of the lower output = logical height of the upper one (pixels / scale).
-/-output "HDMI-A-1" {
+// The two displays are stacked vertically: external Dell U2414H above, the
+// built-in panel below. Niri places outputs side by side unless told
+// otherwise. Positions are in logical pixels (pixels / scale), so the lower
+// output's y is the upper one's logical height. Both are 1920 wide logically
+// (eDP-1 is 2880x1800 at scale 1.5), so they line up edge to edge.
+// Check names and sizes with `niri msg outputs`.
+output "HDMI-A-1" {
     position x=0 y=0
 }
-/-output "eDP-1" {
+output "eDP-1" {
+    scale 1.5
     position x=0 y=1080
 }
 
