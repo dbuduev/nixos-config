@@ -56,6 +56,21 @@ layout {
     border {
         off
     }
+
+    // Marker for tabbed columns (Mod+W): a bar down the left edge, one segment
+    // per window, active one highlighted. Drawn inside the column because the
+    // 2px gaps leave no room for it outside.
+    tab-indicator {
+        place-within-column
+        hide-when-single-tab
+        position "left"
+        width 6
+        gap 2
+        length total-proportion=1.0
+        gaps-between-tabs 2
+        active-color "#7fc8ff"
+        inactive-color "#505050"
+    }
 }
 
 // Session companions (all installed by hosts/zenbook/configuration.nix).
