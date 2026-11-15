@@ -176,6 +176,12 @@ in {
     '';
   };
 
+  # Niri: scrollable-tiling Wayland compositor, offered as a second session in
+  # GDM (gear icon on the password screen). GNOME stays the default/fallback.
+  # The module registers the session and wires portals, gnome-keyring, polkit
+  # and swaylock's PAM service. User config: home/niri/config.kdl.
+  programs.niri.enable = true;
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "au";
@@ -273,6 +279,16 @@ in {
     fd
     wl-clipboard
     alsa-utils # for mic/audio control
+
+    # niri session companions (GNOME Shell provides all of this itself)
+    xwayland-satellite # X11 apps; niri starts it on demand when it's on PATH
+    fuzzel # app launcher
+    waybar # top bar: workspaces, window title, clock, battery
+    mako # notification daemon
+    swaylock # screen locker
+    swayidle # lock on idle / before suspend
+    brightnessctl # brightness keys
+    playerctl # media keys
 
     # containers
     dive

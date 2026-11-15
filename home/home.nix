@@ -541,6 +541,14 @@ in {
     source = ./ghostty/config;
   };
 
+  # Niri session (selectable in GDM on zenbook; see programs.niri there).
+  home.file.".config/niri/config.kdl" = lib.mkIf (!isHeadless) {
+    source = ./niri/config.kdl;
+  };
+  home.file.".config/waybar/config.jsonc" = lib.mkIf (!isHeadless) {
+    source = ./niri/waybar.jsonc;
+  };
+
   home.sessionVariables = {
     RUSTUP_HOME = "${config.home.homeDirectory}/.rustup";
     CARGO_HOME = "${config.home.homeDirectory}/.cargo";

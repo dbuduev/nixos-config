@@ -1,0 +1,199 @@
+// Niri config (zenbook). Deployed by home/home.nix; edit here, then `just switch`.
+// Niri reloads the config live, no relog needed.
+// Bindings carry over the PaperWM conventions (cheatsheets/paperwm.md):
+// Super = Caps Lock held (keyd), hjkl everywhere, Ctrl raises the level
+// (strip -> display), Shift moves the window instead of the focus.
+// Reference: https://niri-wm.github.io/niri/Configuration:-Introduction
+
+input {
+    keyboard {
+        xkb {
+            layout "au"
+        }
+        numlock
+    }
+
+    touchpad {
+        tap
+        dwt
+        natural-scroll
+    }
+}
+
+// The two displays are stacked vertically (external HDMI above, built-in
+// below). Niri places outputs side by side unless told otherwise, so set the
+// positions once the real names and logical sizes are known:
+// run `niri msg outputs` inside the session, then fill in and drop the "/-".
+// y of the lower output = logical height of the upper one (pixels / scale).
+/-output "HDMI-A-1" {
+    position x=0 y=0
+}
+/-output "eDP-1" {
+    position x=0 y=1080
+}
+
+layout {
+    // Same minimal-seam look as the PaperWM setup: 2px gaps, no outer margins.
+    gaps 2
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+        width 2
+        active-color "#7fc8ff"
+        inactive-color "#505050"
+    }
+
+    border {
+        off
+    }
+}
+
+// Session companions (all installed by hosts/zenbook/configuration.nix).
+spawn-at-startup "waybar"
+spawn-at-startup "mako"
+// Lock after 10 min idle (matches GNOME's idle-delay) and before suspend,
+// so closing the lid never leaves an unlocked session.
+spawn-at-startup "swayidle" "-w" "timeout" "600" "swaylock -f" "before-sleep" "swaylock -f"
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+// Ghostty already runs with window-decoration = none; ask everything else to
+// drop client-side decorations too.
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+// Keep the password manager out of screen shares.
+window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    block-out-from "screen-capture"
+}
+
+binds {
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    // Programs
+    Mod+G hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
+    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+Ctrl+Delete hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock" "-f"; }
+
+    // Overview: zoomed-out view of workspaces and windows (also the top-left
+    // hot corner, or a four-finger swipe up).
+    Mod+A repeat=false { toggle-overview; }
+
+    Mod+BackSpace repeat=false { close-window; }
+
+    // Focus: h/l wrap around the column strip, j/k wrap within the column.
+    Mod+H     { focus-column-left-or-last; }
+    Mod+L     { focus-column-right-or-first; }
+    Mod+J     { focus-window-down-or-top; }
+    Mod+K     { focus-window-up-or-bottom; }
+    Mod+Left  { focus-column-left-or-last; }
+    Mod+Right { focus-column-right-or-first; }
+    Mod+Down  { focus-window-down-or-top; }
+    Mod+Up    { focus-window-up-or-bottom; }
+    Mod+Home  { focus-column-first; }
+    Mod+End   { focus-column-last; }
+
+    // Move within the strip.
+    Mod+Shift+H { move-column-left; }
+    Mod+Shift+L { move-column-right; }
+    Mod+Shift+J { move-window-down; }
+    Mod+Shift+K { move-window-up; }
+
+    // Displays: Ctrl = focus display, Ctrl+Shift = move window to display,
+    // Alt+Shift = move the whole workspace to display.
+    Mod+Ctrl+H { focus-monitor-left; }
+    Mod+Ctrl+J { focus-monitor-down; }
+    Mod+Ctrl+K { focus-monitor-up; }
+    Mod+Ctrl+L { focus-monitor-right; }
+    Mod+Ctrl+Shift+H { move-window-to-monitor-left; }
+    Mod+Ctrl+Shift+J { move-window-to-monitor-down; }
+    Mod+Ctrl+Shift+K { move-window-to-monitor-up; }
+    Mod+Ctrl+Shift+L { move-window-to-monitor-right; }
+    Mod+Alt+Shift+H { move-workspace-to-monitor-left; }
+    Mod+Alt+Shift+J { move-workspace-to-monitor-down; }
+    Mod+Alt+Shift+K { move-workspace-to-monitor-up; }
+    Mod+Alt+Shift+L { move-workspace-to-monitor-right; }
+
+    // Workspaces. Niri's are dynamic (one empty workspace always trails the
+    // used ones), so an index past the end lands on that last empty one.
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+Shift+1 { move-window-to-workspace 1; }
+    Mod+Shift+2 { move-window-to-workspace 2; }
+    Mod+Shift+3 { move-window-to-workspace 3; }
+    Mod+Shift+4 { move-window-to-workspace 4; }
+    Mod+Page_Down      { focus-workspace-down; }
+    Mod+Page_Up        { focus-workspace-up; }
+    Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
+    Mod+Ctrl+Page_Up   { move-window-to-workspace-up; }
+    Mod+Grave          { focus-workspace-previous; }
+
+    // Columns & stacking (slurp / barf).
+    Mod+I       { consume-window-into-column; }
+    Mod+O       { expel-window-from-column; }
+    Mod+Shift+O { consume-or-expel-window-right; }
+    Mod+W       { toggle-column-tabbed-display; }
+
+    // Sizing: R cycles, Shift makes it vertical, Alt goes backwards.
+    Mod+R           { switch-preset-column-width; }
+    Mod+Alt+R       { switch-preset-column-width-back; }
+    Mod+Shift+R     { switch-preset-window-height; }
+    Mod+Alt+Shift+R { switch-preset-window-height-back; }
+    Mod+Ctrl+R      { reset-window-height; }
+    Mod+F           { maximize-column; }
+    Mod+Shift+F     { fullscreen-window; }
+    Mod+Ctrl+F      { expand-column-to-available-width; }
+    Mod+C           { center-column; }
+    Mod+Minus       { set-column-width "-10%"; }
+    Mod+Equal       { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    // Floating layer (PaperWM's scratch layer keys).
+    Mod+Escape       { toggle-window-floating; }
+    Mod+Shift+Escape { switch-focus-between-floating-and-tiling; }
+
+    // Media / hardware keys (GNOME handled these; niri needs them spelled out).
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
+    XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
+    XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+
+    Print      { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print  { screenshot-window; }
+
+    // Escape hatch if an app (remote desktop, VM) grabs all shortcuts.
+    Mod+Ctrl+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    // Leave the session (asks for confirmation) -> back to GDM.
+    Mod+Shift+E     { quit; }
+    Ctrl+Alt+Delete { quit; }
+
+    Mod+Shift+P { power-off-monitors; }
+}
