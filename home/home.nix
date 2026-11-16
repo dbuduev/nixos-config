@@ -141,6 +141,8 @@ in {
       zathura # vim-style document viewer (PDF/EPUB via mupdf)
       foliate # GNOME e-book reader
 
+      libnotify # notify-send: desktop notifications from the shell/scripts
+
       gnomeExtensions.paperwm # scrollable tiling inside GNOME (trial)
     ]
     ++ (with unstable-pkgs; [
