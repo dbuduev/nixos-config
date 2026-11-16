@@ -19,7 +19,9 @@
     "format-wifi": "{essid} {signalStrength}%",
     "format-ethernet": "eth",
     "format-disconnected": "offline",
-    "tooltip-format": "{ifname}: {ipaddr}"
+    "tooltip-format": "{ifname}: {ipaddr}",
+    // Click opens NetworkManager's text UI; niri floats it (see config.kdl).
+    "on-click": "ghostty --title=nmtui -e nmtui"
   },
   "wireplumber": {
     "format": "vol {volume}%",

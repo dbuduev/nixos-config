@@ -95,6 +95,15 @@ window-rule {
     open-floating true
 }
 
+// The Wi-Fi picker opened from the waybar network label: a small floating
+// popup rather than a new column.
+window-rule {
+    match title="^nmtui$"
+    open-floating true
+    default-column-width { fixed 900; }
+    default-window-height { fixed 600; }
+}
+
 // Keep the password manager out of screen shares.
 window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
