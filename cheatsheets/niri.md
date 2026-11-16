@@ -109,3 +109,8 @@ Bindings reflect `home/niri/config.kdl`. They follow the PaperWM conventions
   privilege prompts. Check it with `systemctl --user status polkit-gnome-agent`.
 - Bar, notifications, lock and idle-lock are separate programs: waybar
   (`home/niri/waybar.jsonc`), mako, swaylock, swayidle (10 min + before suspend).
+- **Bluetooth has no GUI or bar entry**; use `bluetoothctl` (run it bare for an
+  interactive prompt with MAC completion). `power on|off`, `devices`,
+  `connect|disconnect <MAC>`; new device: `scan on`, then `pair`, `trust`,
+  `connect <MAC>`. Paired devices reconnect on their own. If this gets
+  tedious, `bluetui` (in nixpkgs) is the `nmtui`-style option, not installed.
