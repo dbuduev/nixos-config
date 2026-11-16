@@ -553,6 +553,9 @@ in {
   home.file.".config/waybar/config.jsonc" = lib.mkIf (!isHeadless) {
     source = ./niri/waybar.jsonc;
   };
+  home.file.".config/mako/config" = lib.mkIf (!isHeadless) {
+    source = ./niri/mako.conf;
+  };
 
   home.sessionVariables = {
     RUSTUP_HOME = "${config.home.homeDirectory}/.rustup";
