@@ -35,5 +35,22 @@ vm-build:
 vm-run:
 	./result/bin/run-devvm-vm
 
+# Runs as a transient systemd user unit, so there is no QEMU window and no
+# terminal to keep open. Use vm-run when you need the graphical console.
+# Stop it from inside the guest (`sudo poweroff`); stopping the unit kills
+# QEMU without a guest shutdown.
+#
+# Start devvm in the background (no window, no terminal)
+vm-start:
+	-@ systemctl --user reset-failed devvm 2>/dev/null
+	systemd-run --user --unit=devvm \
+	  --working-directory={{justfile_directory()}} \
+	  --setenv=QEMU_OPTS="-display none" \
+	  {{justfile_directory()}}/result/bin/run-devvm-vm
+
+# Show devvm's unit state, or its last log lines once the unit is gone
+vm-status:
+	@ systemctl --user --no-pager status devvm || journalctl --user -u devvm -n 20 --no-pager
+
 vm-ssh:
 	ssh -p 2222 dennisb@localhost
