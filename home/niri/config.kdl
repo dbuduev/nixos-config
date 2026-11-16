@@ -7,9 +7,7 @@
 
 input {
     keyboard {
-        xkb {
-            layout "au"
-        }
+        xkb { layout "au,ru"; options "grp:win_space_toggle"; }
         numlock
     }
 
@@ -17,6 +15,7 @@ input {
         tap
         dwt
         natural-scroll
+        disabled-on-external-mouse
     }
 }
 
