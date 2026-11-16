@@ -74,6 +74,7 @@ in {
     ripgrep
     fd
     ghostty.terminfo
+    unstable-pkgs.zmx # persistent shell sessions; attached from the host by devvm-term
 
     # containers
     dive

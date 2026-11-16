@@ -290,6 +290,12 @@ in {
       name = "captive-login";
       text = builtins.readFile ./captive-login.sh;
     })
+    # Session picker for devvm terminals (niri Mod+Alt+G). See the script.
+    (writeShellApplication {
+      name = "devvm-term";
+      runtimeInputs = [openssh fuzzel libnotify ghostty];
+      text = builtins.readFile ./devvm-term.sh;
+    })
     ripgrep
     fd
     wl-clipboard

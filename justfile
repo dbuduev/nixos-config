@@ -52,5 +52,6 @@ vm-start:
 vm-status:
 	@ systemctl --user --no-pager status devvm || journalctl --user -u devvm -n 20 --no-pager
 
-vm-ssh:
-	ssh -p 2222 dennisb@localhost
+# SSH into devvm; with a session name, attach to (or create) that zmx session
+vm-ssh session="":
+	ssh -p 2222 dennisb@localhost {{ if session == "" { "" } else { "-t zmx attach " + quote(session) } }}

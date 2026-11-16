@@ -115,7 +115,7 @@ binds {
 
     // Programs
     Mod+G hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-    Mod+Alt+G hotkey-overlay-title="Open a Terminal on devvm: ghostty + ssh" { spawn "ghostty" "-e" "ssh" "devvm"; }
+    Mod+Alt+G hotkey-overlay-title="Open a Terminal on devvm: zmx session picker" { spawn "devvm-term"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+Ctrl+Delete hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock" "-f"; }
 

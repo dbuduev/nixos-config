@@ -322,6 +322,11 @@ in {
         bindkey "$terminfo[kcuu1]" history-substring-search-up
         bindkey "$terminfo[kcud1]" history-substring-search-down
 
+        # Mark shells running inside a zmx session (devvm; never set on the host).
+        if [[ -n $ZMX_SESSION ]]; then
+          PS1="[$ZMX_SESSION] $PS1"
+        fi
+
       '';
     in
       lib.mkMerge [zshConfigEarlyInit zshConfig];

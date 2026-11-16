@@ -20,7 +20,7 @@ Bindings reflect `home/niri/config.kdl`. They follow the PaperWM conventions
 | Action | Binding |
 |---|---|
 | Terminal (Ghostty) | `Super+G` |
-| ≠ Terminal on devvm (Ghostty + `ssh devvm`) | `Super+Alt+G` |
+| ≠ Terminal on devvm (pick or name a persistent zmx session) | `Super+Alt+G` |
 | ≠ App launcher (fuzzel) | `Super+D` |
 | ≠ Overview | `Super+A` (or top-left hot corner / 4-finger swipe up) |
 | Window switcher with titles | `Alt+Tab` / `Super+Tab` |
