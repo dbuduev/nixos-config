@@ -293,7 +293,7 @@ in {
     # Session picker for devvm terminals (niri Mod+Alt+G). See the script.
     (writeShellApplication {
       name = "devvm-term";
-      runtimeInputs = [openssh fuzzel libnotify ghostty];
+      runtimeInputs = [openssh fuzzel libnotify ghostty gawk];
       text = builtins.readFile ./devvm-term.sh;
     })
     ripgrep
