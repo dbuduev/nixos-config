@@ -105,7 +105,7 @@ Bindings reflect `home/niri/config.kdl`. They follow the PaperWM conventions
   `eDP-1`). On a different external monitor, check `niri msg outputs` and
   adjust; an unknown output is placed to the right automatically.
 - **X11 apps** run through `xwayland-satellite`, which niri starts on demand.
-- **No polkit authentication agent** is started, so GUI privilege prompts
-  won't appear in niri (terminal `sudo` is unaffected).
+- **Polkit agent**: `polkit-gnome-agent.service` (user unit, niri only) draws GUI
+  privilege prompts. Check it with `systemctl --user status polkit-gnome-agent`.
 - Bar, notifications, lock and idle-lock are separate programs: waybar
   (`home/niri/waybar.jsonc`), mako, swaylock, swayidle (10 min + before suspend).

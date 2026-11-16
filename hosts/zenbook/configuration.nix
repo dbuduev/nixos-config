@@ -182,6 +182,21 @@ in {
   # and swaylock's PAM service. User config: home/niri/config.kdl.
   programs.niri.enable = true;
 
+  # Polkit authentication agent for the niri session: draws the password
+  # dialog when a GUI app asks for privileges. Tied to niri.service so it never
+  # runs under GNOME, whose shell has its own agent built in.
+  systemd.user.services.polkit-gnome-agent = {
+    description = "Polkit authentication agent (niri session)";
+    wantedBy = ["niri.service"];
+    after = ["niri.service"];
+    partOf = ["niri.service"];
+    serviceConfig = {
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 2;
+    };
+  };
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "au";
